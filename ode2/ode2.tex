@@ -1,0 +1,104 @@
+\magnification=\magstep1
+\hsize=16truecm
+\vsize=24truecm
+\parindent=0pt
+\baselineskip=14pt
+
+\def\boxnum#1{\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf#1}\kern5pt}\hrule}\vrule}}
+
+\centerline{\bf Homogeneous Differential Equations}
+\bigskip
+
+\line{\boxnum{1}\quad $y'={x+y\over x}$\hfil}
+$$y=ux:\quad u+xu'=1+u$$
+$$xu'=1\quad\Rightarrow\quad u=\ln|x|+C$$
+$$y=x(\ln|x|+C)$$
+\bigskip
+
+\line{\boxnum{2}\quad $xy'=y+xe^{y/x}$\hfil}
+$$u+xu'=u+e^u\quad\Rightarrow\quad xu'=e^u$$
+$$-e^{-u}=\ln|x|+C$$
+$$y=-x\ln(-\ln|x|-C)$$
+\bigskip
+
+\line{\boxnum{3}\quad $y'={y-x\over y+x}$\hfil}
+$$u+xu'={u-1\over u+1}$$
+$${1\over2}\ln(1+u^2)+\arctan u=-\ln|x|+C$$
+$$\ln(x^2+y^2)=-2\arctan{y\over x}+C$$
+\bigskip
+
+\line{\boxnum{4}\quad $(x^2+y^2)y'=2xy$\hfil}
+$$u+xu'={2u\over1+u^2}$$
+$$\int{1+u^2\over u(1-u^2)}\,du=\int{dx\over x}$$
+$$\left|{u\over1-u^2}\right|=Cx\quad\Rightarrow\quad x^2-y^2=Cy$$
+\bigskip
+
+\line{\boxnum{5}\quad $y'={y\over x}+{x\over y}$\hfil}
+$$u+xu'=u+{1\over u}\quad\Rightarrow\quad xu'={1\over u}$$
+$$u\,du={dx\over x}\quad\Rightarrow\quad{u^2\over2}=\ln|x|+C$$
+$$y^2=x^2(2\ln|x|+C)$$
+\bigskip
+
+\line{\boxnum{6}\quad $xy'=y+x\cos^2{y\over x}$\hfil}
+$$u+xu'=u+\cos^2u\quad\Rightarrow\quad xu'=\cos^2u$$
+$$\sec^2u\,du={dx\over x}\quad\Rightarrow\quad\tan u=\ln|x|+C$$
+$$\tan{y\over x}=\ln|x|+C$$
+\bigskip
+
+\line{\boxnum{7}\quad $xy'=2x-y$\hfil}
+$$u+xu'=2-u\quad\Rightarrow\quad xu'=2-2u$$
+$${du\over1-u}={2\,dx\over x}\quad\Rightarrow\quad-\ln|1-u|=2\ln|x|+C$$
+$$y=x-{C\over x}$$
+\bigskip
+
+\line{\boxnum{8}\quad $(x+2y)\,dx-x\,dy=0$\hfil}
+$$u+xu'=1+2u\quad\Rightarrow\quad xu'=1+u$$
+$${du\over1+u}={dx\over x}\quad\Rightarrow\quad\ln|1+u|=\ln|x|+C$$
+$$y=Cx^2-x$$
+\bigskip
+
+\line{\boxnum{9}\quad $x^2y'=y^2+xy$\hfil}
+$$u+xu'=u^2+u\quad\Rightarrow\quad xu'=u^2$$
+$${du\over u^2}={dx\over x}\quad\Rightarrow\quad-{1\over u}=\ln|x|+C$$
+$$y={-x\over\ln|x|+C}$$
+\bigskip
+
+\line{\boxnum{10}\quad $y'={y\over x}\left(\ln{y\over x}+1\right)$\hfil}
+$$u+xu'=u\ln u+u\quad\Rightarrow\quad xu'=u\ln u$$
+$${du\over u\ln u}={dx\over x}\quad\Rightarrow\quad\ln|\ln u|=\ln|x|+C$$
+$$y=xe^{Cx}$$
+\vfil\eject
+
+\centerline{\bf Homework}
+\bigskip
+
+\line{\boxnum{1}\quad $y'={2x+y\over x}$\hfil}
+\bigskip
+
+\line{\boxnum{2}\quad $xy'=y+\sqrt{x^2+y^2}$\hfil}
+\bigskip
+
+\line{\boxnum{3}\quad $(x-y)y'=x+y$\hfil}
+\bigskip
+
+\line{\boxnum{4}\quad $y'={y\over x}+\cos{y\over x}$\hfil}
+\bigskip
+
+\line{\boxnum{5}\quad $(x^2-y^2)\,dx+2xy\,dy=0$\hfil}
+\bigskip
+
+\line{\boxnum{6}\quad $xy'=y+x\sin{y\over x}$\hfil}
+\bigskip
+
+\line{\boxnum{7}\quad $y'={y^2\over x^2}+2$\hfil}
+\bigskip
+
+\line{\boxnum{8}\quad $(2x-3y)\,dx+x\,dy=0$\hfil}
+\bigskip
+
+\line{\boxnum{9}\quad $x^2y'=y^2-xy$\hfil}
+\bigskip
+
+\line{\boxnum{10}\quad $y'={y\over x}\ln{y\over x}$\hfil}
+
+\bye

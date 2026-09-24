@@ -1,0 +1,106 @@
+\magnification=\magstep1
+\hsize=16truecm
+\vsize=24truecm
+\parindent=0pt
+\baselineskip=14pt
+
+\def\boxnum#1{\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf#1}\kern5pt}\hrule}\vrule}}
+
+\centerline{\bf Separable Differential Equations}
+\bigskip
+
+\line{\boxnum{1}\quad $y'=4x^3y$\hfil}
+$$\int{dy\over y}=\int 4x^3\,dx$$
+$$\ln|y|=x^4+C$$
+$$y=Ce^{x^4}$$
+\bigskip
+
+\line{\boxnum{2}\quad $y'=y\sin x$\hfil}
+$$\int{dy\over y}=\int\sin x\,dx$$
+$$\ln|y|=-\cos x+C$$
+$$y=Ce^{-\cos x}$$
+\bigskip
+
+\line{\boxnum{3}\quad $(1+x^2)y'=xy$\hfil}
+$$\int{dy\over y}=\int{x\,dx\over 1+x^2}$$
+$$\ln|y|={1\over2}\ln(1+x^2)+C$$
+$$y=C\sqrt{1+x^2}$$
+\bigskip
+
+\line{\boxnum{4}\quad $y'=e^{x-2y}$\hfil}
+$$y'=e^x\cdot e^{-2y}$$
+$$\int e^{2y}\,dy=\int e^x\,dx$$
+$${1\over2}e^{2y}=e^x+C$$
+$$y={1\over2}\ln(2e^x+C)$$
+\bigskip
+
+\line{\boxnum{5}\quad $xy'=2y\ln x$\hfil}
+$$\int{dy\over y}=2\int{\ln x\over x}\,dx$$
+$$\ln|y|=(\ln x)^2+C$$
+$$y=Ce^{(\ln x)^2}$$
+\bigskip
+
+\line{\boxnum{6}\quad $y'=y\cot x$\hfil}
+$$\int{dy\over y}=\int\cot x\,dx$$
+$$\ln|y|=\ln|\sin x|+C$$
+$$y=C\sin x$$
+\bigskip
+
+\line{\boxnum{7}\quad $y'=3x^2y^2$\hfil}
+$$\int{dy\over y^2}=\int 3x^2\,dx$$
+$$-{1\over y}=x^3+C$$
+$$y=-{1\over x^3+C}$$
+\bigskip
+
+\line{\boxnum{8}\quad $yy'=x^2+1$\hfil}
+$$\int y\,dy=\int(x^2+1)\,dx$$
+$${y^2\over2}={x^3\over3}+x+C$$
+$$y=\pm\sqrt{{2x^3\over3}+2x+C}$$
+\bigskip
+
+\line{\boxnum{9}\quad $(x^2-1)y'+2xy=0$\hfil}
+$$\int{dy\over y}=-\int{2x\,dx\over x^2-1}$$
+$$\ln|y|=-\ln|x^2-1|+C$$
+$$y={C\over x^2-1}$$
+\bigskip
+
+\line{\boxnum{10}\quad $y'=2xe^{y-x^2}$\hfil}
+$$y'=2x\,e^{-x^2}\cdot e^y$$
+$$\int e^{-y}\,dy=\int 2x\,e^{-x^2}\,dx$$
+$$-e^{-y}=-e^{-x^2}+C$$
+$$y=-\ln(e^{-x^2}+C)$$
+\vfil\eject
+
+\centerline{\bf Homework}
+\bigskip
+
+\line{\boxnum{1}\quad $y'=5x^4y$\hfil}
+\bigskip
+
+\line{\boxnum{2}\quad $y'=y\cos 2x$\hfil}
+\bigskip
+
+\line{\boxnum{3}\quad $(1-x^2)y'=xy$\hfil}
+\bigskip
+
+\line{\boxnum{4}\quad $y'=e^{3x-y}$\hfil}
+\bigskip
+
+\line{\boxnum{5}\quad $xy'=3y\ln x$\hfil}
+\bigskip
+
+\line{\boxnum{6}\quad $y'=y\tan 2x$\hfil}
+\bigskip
+
+\line{\boxnum{7}\quad $y'=x^2y^3$\hfil}
+\bigskip
+
+\line{\boxnum{8}\quad $(x^2+4)y'=xy$\hfil}
+\bigskip
+
+\line{\boxnum{9}\quad $y'\sin x=y\ln y$\hfil}
+\bigskip
+
+\line{\boxnum{10}\quad $y'=(x+1)e^{-y}$\hfil}
+
+\bye

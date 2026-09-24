@@ -1,0 +1,85 @@
+\magnification=\magstep1
+\hsize=16truecm
+\vsize=24truecm
+\parindent=0pt
+\baselineskip=14pt
+
+\def\boxnum#1{\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf#1}\kern5pt}\hrule}\vrule}}
+
+\centerline{\bf Separable Differential Equations}
+\bigskip
+
+\line{\boxnum{1}\quad $y'=2xy$\hfil}
+$$\int{dy\over y}=\int 2x\,dx$$
+$$\ln|y|=x^2+C$$
+$$y=Ce^{x^2}$$
+\bigskip
+
+\line{\boxnum{2}\quad $(1+x^2)y'=1+y^2$\hfil}
+$$\int{dy\over 1+y^2}=\int{dx\over 1+x^2}$$
+$$\arctan y=\arctan x+C$$
+$$y=\tan(\arctan x+C)$$
+\bigskip
+
+\line{\boxnum{3}\quad $y'=y\cos x$\hfil}
+$$\int{dy\over y}=\int\cos x\,dx$$
+$$\ln|y|=\sin x+C$$
+$$y=Ce^{\sin x}$$
+\bigskip
+
+\line{\boxnum{4}\quad $y'=e^{x+y}$\hfil}
+$$y'=e^x\cdot e^y$$
+$$\int e^{-y}\,dy=\int e^x\,dx$$
+$$-e^{-y}=e^x+C$$
+$$e^{-y}=-e^x-C$$
+$$y=-\ln(-e^x-C)$$
+\bigskip
+
+\line{\boxnum{5}\quad $xy'=y\ln y$\hfil}
+$$\int{dy\over y\ln y}=\int{dx\over x}$$
+$$\ln|\ln y|=\ln|x|+C$$
+$$\ln y=Cx$$
+$$y=e^{Cx}$$
+\bigskip
+
+\line{\boxnum{6}\quad $y'=y\ln x$\hfil}
+$$\int{dy\over y}=\int\ln x\,dx$$
+$$u=\ln x,\quad dv=dx,\quad du={dx\over x},\quad v=x$$
+$$\int\ln x\,dx=x\ln x-\int x\cdot{dx\over x}=x\ln x-x+C$$
+$$\ln|y|=x\ln x-x+C$$
+$$y=Ce^{x\ln x-x}$$
+\vfil\eject
+
+\centerline{\bf Homework}
+\bigskip
+
+\line{\boxnum{1}\quad $y'=3x^2y$\hfil}
+\bigskip
+
+\line{\boxnum{2}\quad $y'=(y+1)\tan x$\hfil}
+\bigskip
+
+\line{\boxnum{3}\quad $y'=xy^2$\hfil}
+\bigskip
+
+\line{\boxnum{4}\quad $(1+x)y\,dy=(1-y)x\,dx$\hfil}
+\bigskip
+
+\line{\boxnum{5}\quad $y'=e^{2x-y}$\hfil}
+\bigskip
+
+\line{\boxnum{6}\quad $y'=y\tan x$\hfil}
+\bigskip
+
+\line{\boxnum{7}\quad $y'=y^2\cos x$\hfil}
+\bigskip
+
+\line{\boxnum{8}\quad $xy\,dx+(x^2+1)\,dy=0$\hfil}
+\bigskip
+
+\line{\boxnum{9}\quad $y'\ln x={y\over x}$\hfil}
+\bigskip
+
+\line{\boxnum{10}\quad $y'=xe^{y-x^2}$\hfil}
+
+\bye
