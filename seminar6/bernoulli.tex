@@ -1,0 +1,623 @@
+\magnification=\magstep1
+\hsize=16truecm
+\vsize=24truecm
+\parindent=0pt
+\baselineskip=14pt
+\raggedright
+\tolerance=10000
+\hbadness=10000
+
+\font\tenrm="Liberation Serif" at 10pt
+\font\tenbf="Liberation Serif/B" at 10pt
+\font\tenit="Liberation Serif/I" at 10pt
+\rm
+
+\def\boxnum#1{\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf#1}\kern5pt}\hrule}\vrule}}
+
+% заголовок задачи
+\def\problem#1#2{\vskip0pt plus 60pt\penalty-400\bigskip
+  \line{\boxnum{#1}\quad #2\hfil}\nobreak\smallskip}
+% заголовок шага решения
+\def\st#1{\medskip\noindent{\bf #1}\enspace\ignorespaces}
+% ответ в рамке
+\def\ans#1{\medskip\noindent\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf Ответ:}\enspace$\displaystyle #1$\kern5pt}\hrule}\vrule}\par}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\bf Уравнения Бернулли}
+\bigskip
+
+{\bf Памятка: как решать.}\quad Уравнение Бернулли --- это уравнение вида
+$$y'+P(x)\,y=Q(x)\,y^{n},\qquad n\ne0,\ n\ne1.$$
+(При $n=0$ это было бы линейное уравнение, при $n=1$ --- с разделяющимися
+переменными.) Решаем подстановкой $y=u\cdot v$, где $u(x)$ и $v(x)$ --- две
+новые неизвестные функции.
+\medskip
+
+{\bf Шаг 1.} Приводим уравнение к виду $y'+P\,y=Q\,y^n$ (делим на коэффициент
+при $y'$, слагаемое с $y$ переносим влево) и выписываем $P$, $Q$, $n$.
+\smallskip
+{\bf Шаг 2.} Подставляем $y=uv$, $y'=u'v+uv'$ и выносим $u$ за скобку:
+$$u'v+u\,(v'+Pv)=Q\,u^nv^n.$$
+{\bf Шаг 3.} Выбираем $v$ так, чтобы скобка стала равна нулю:
+$v'+Pv=0$. Это уравнение с разделяющимися переменными; нужно найти
+\underbar{одно} (любое, не равное нулю) решение, поэтому постоянную $C$ не
+пишем.
+\smallskip
+{\bf Шаг 4.} Подставляем найденное $v$ в оставшееся уравнение
+$u'v=Q\,u^nv^n$. Получаем уравнение на $u$ с разделяющимися переменными.
+Решаем его --- здесь появляется постоянная $C$.
+\smallskip
+{\bf Шаг 5.} Записываем ответ $y=u\cdot v$. Если $n>0$, то $y=0$ тоже решение
+(его мы теряем при делении на $u^n$) --- его нужно отдельно проверить и
+дописать.
+\medskip
+
+{\bf Почему можно выбирать $v$.} Мы заменили одну неизвестную функцию $y$
+произведением двух функций, а уравнение осталось одно. Значит, одну из
+функций можно выбрать так, как нам удобно. Мы выбираем $v$ так, чтобы
+уравнение стало проще.
+\smallskip
+{\bf Про постоянную $C$.} Она произвольная, поэтому $-C$, $2C$, $C/3$ и т.\thinspace п.
+--- тоже произвольные постоянные. Их можно обозначать той же буквой $C$.
+Знак перед $C$ в ответе поэтому не важен.
+\smallskip
+{\bf Про интегралы.} Все формулы, которые нужны: $\int u^{k}\,du={u^{k+1}\over
+k+1}$ при $k\ne-1$; $\int{du\over u}=\ln|u|$; $\int e^{ax}dx={e^{ax}\over a}$;
+по частям: $\int p\,dq=pq-\int q\,dp$.
+
+\vfil\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\bf Классная работа}
+\bigskip
+
+%---------------------------------------------------------------- 1
+\problem{1}{$y'+y=y^2$}
+\st{Шаг 1.} Уравнение уже имеет вид $y'+P\,y=Q\,y^n$. Сравниваем:
+$P=1$, $Q=1$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$. Тогда $y'=u'v+uv'$ (производная
+произведения). Подставляем в уравнение:
+$$u'v+uv'+uv=u^2v^2.$$
+Слагаемые $uv'$ и $uv$ содержат $u$ без производной, выносим $u$ за скобку:
+$$u'v+u\,(v'+v)=u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Выбираем $v$ так, чтобы скобка обратилась в нуль:
+$$v'+v=0.$$
+Пишем $v'={dv\over dx}$ и разделяем переменные:
+$${dv\over dx}=-v\quad\Rightarrow\quad{dv\over v}=-dx
+\quad\Rightarrow\quad\ln|v|=-x\quad\Rightarrow\quad v=e^{-x}.$$
+Постоянную не пишем: нужно только одно решение (берём $C=0$ и знак плюс).
+\st{Шаг 4.} В $(*)$ скобка равна нулю, остаётся $u'v=u^2v^2$. Делим на $v$
+и подставляем $v=e^{-x}$:
+$$u'=u^2v=u^2e^{-x}.$$
+Разделяем переменные ($u'={du\over dx}$):
+$${du\over u^2}=e^{-x}\,dx.$$
+Интегрируем: слева $\int u^{-2}du=-{1\over u}$, справа $\int e^{-x}dx=-e^{-x}$:
+$$-{1\over u}=-e^{-x}+C.$$
+Умножаем на $-1$ (и $-C$ снова называем $C$):
+$${1\over u}=e^{-x}+C\quad\Rightarrow\quad u={1\over e^{-x}+C}.$$
+\st{Шаг 5.} Возвращаемся к $y=uv$:
+$$y={e^{-x}\over e^{-x}+C}.$$
+Умножим числитель и знаменатель на $e^{x}$ (чтобы убрать минусы в
+степенях): $y={1\over 1+Ce^{x}}$.
+\smallskip
+Потерянное решение: $y=0$. Проверка: $0'+0=0^2$ --- верно.
+\ans{y={1\over1+Ce^{x}},\quad y=0}
+
+%---------------------------------------------------------------- 2
+\problem{2}{$y'+{y\over x}=x\,y^2$}
+\st{Шаг 1.} Уравнение уже в стандартном виде:
+$P={1\over x}$, $Q=x$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+uv'+{uv\over x}=x\,u^2v^2
+\quad\Rightarrow\quad u'v+u\left(v'+{v\over x}\right)=x\,u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобку приравниваем к нулю: $v'+{v\over x}=0$. Разделяем
+переменные:
+$${dv\over dx}=-{v\over x}\quad\Rightarrow\quad{dv\over v}=-{dx\over x}
+\quad\Rightarrow\quad\ln|v|=-\ln|x|=\ln\left|{1\over x}\right|
+\quad\Rightarrow\quad v={1\over x}.$$
+\st{Шаг 4.} В $(*)$ остаётся $u'v=x\,u^2v^2$. Делим на $v$:
+$$u'=x\,u^2v=x\,u^2\cdot{1\over x}=u^2.$$
+(Иксы сократились --- это хороший знак.) Разделяем переменные:
+$${du\over u^2}=dx\quad\Rightarrow\quad-{1\over u}=x+C
+\quad\Rightarrow\quad u=-{1\over x+C}.$$
+(Из $-{1\over u}=x+C$: умножаем на $-1$, получаем ${1\over u}=-(x+C)$,
+переворачиваем дробь.)
+\st{Шаг 5.} $y=uv=-{1\over x+C}\cdot{1\over x}=-{1\over x(x+C)}$.
+\smallskip
+Потерянное решение: $y=0$ (проверка: $0+0=x\cdot0$).
+\ans{y=-{1\over x(x+C)},\quad y=0}
+
+%---------------------------------------------------------------- 3
+\problem{3}{$y'+2y=e^{x}y^2$}
+\st{Шаг 1.} $P=2$, $Q=e^{x}$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+uv'+2uv=e^{x}u^2v^2\quad\Rightarrow\quad
+u'v+u\,(v'+2v)=e^{x}u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+2v=0$.
+$${dv\over dx}=-2v\quad\Rightarrow\quad{dv\over v}=-2\,dx
+\quad\Rightarrow\quad\ln|v|=-2x\quad\Rightarrow\quad v=e^{-2x}.$$
+\st{Шаг 4.} Остаётся $u'v=e^{x}u^2v^2$. Делим на $v$ и подставляем
+$v=e^{-2x}$:
+$$u'=e^{x}u^2v=e^{x}\cdot e^{-2x}u^2=e^{-x}u^2.$$
+(Степени складываются: $e^{x}\cdot e^{-2x}=e^{x-2x}=e^{-x}$.)
+Разделяем переменные и интегрируем:
+$${du\over u^2}=e^{-x}dx\quad\Rightarrow\quad-{1\over u}=-e^{-x}+C
+\quad\Rightarrow\quad{1\over u}=e^{-x}+C
+\quad\Rightarrow\quad u={1\over e^{-x}+C}.$$
+(Умножили на $-1$, а $-C$ назвали $C$.)
+\st{Шаг 5.} $y=uv={e^{-2x}\over e^{-x}+C}$. Умножим числитель и
+знаменатель на $e^{2x}$: в числителе получим $1$, в знаменателе
+$e^{2x}e^{-x}+Ce^{2x}=e^{x}+Ce^{2x}$. Итак, $y={1\over e^{x}+Ce^{2x}}$.
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y={1\over e^{x}+Ce^{2x}},\quad y=0}
+
+%---------------------------------------------------------------- 4
+\problem{4}{$y'\cos x+y\sin x=y^2$}
+\st{Шаг 1.} Коэффициент при $y'$ равен $\cos x$, делим всё уравнение на него:
+$$y'+y\,{\sin x\over\cos x}={y^2\over\cos x}\quad\Rightarrow\quad
+y'+y\tan x={1\over\cos x}\,y^2.$$
+Значит, $P=\tan x$, $Q={1\over\cos x}$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'+v\tan x)={1\over\cos x}\,u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+v\tan x=0$.
+$${dv\over v}=-\tan x\,dx.$$
+Интеграл: $\int\tan x\,dx=\int{\sin x\over\cos x}dx=-\ln|\cos x|$
+(так как $d(\cos x)=-\sin x\,dx$). Поэтому
+$$\ln|v|=-\int\tan x\,dx=\ln|\cos x|\quad\Rightarrow\quad v=\cos x.$$
+\st{Шаг 4.} Остаётся $u'v={1\over\cos x}u^2v^2$. Делим на $v$:
+$$u'={1\over\cos x}\,u^2v={1\over\cos x}\,u^2\cos x=u^2.$$
+Разделяем переменные:
+$${du\over u^2}=dx\quad\Rightarrow\quad-{1\over u}=x+C
+\quad\Rightarrow\quad u=-{1\over x+C}.$$
+\st{Шаг 5.} $y=uv=-{\cos x\over x+C}$.
+\smallskip
+Потерянное решение: $y=0$ (проверка: $0\cdot\cos x+0\cdot\sin x=0^2$).
+\ans{y=-{\cos x\over x+C},\quad y=0}
+
+%---------------------------------------------------------------- 5
+\problem{5}{$y'={y\over x}+x\,y^3$}
+\st{Шаг 1.} Переносим ${y\over x}$ влево, чтобы получить вид $y'+Py=Qy^n$:
+$$y'-{1\over x}\,y=x\,y^3.$$
+Значит, $P=-{1\over x}$, $Q=x$, $n=3$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\left(v'-{v\over x}\right)=x\,u^3v^3.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'-{v\over x}=0$.
+$${dv\over v}={dx\over x}\quad\Rightarrow\quad\ln|v|=\ln|x|
+\quad\Rightarrow\quad v=x.$$
+\st{Шаг 4.} Остаётся $u'v=x\,u^3v^3$. Делим на $v$ и подставляем $v=x$:
+$$u'=x\,u^3v^2=x\,u^3x^2=x^3u^3.$$
+Разделяем переменные:
+$${du\over u^3}=x^3dx.$$
+Слева $\int u^{-3}du={u^{-2}\over-2}=-{1\over2u^2}$, справа $\int x^3dx={x^4\over4}$:
+$$-{1\over2u^2}={x^4\over4}+C.$$
+Умножаем на $-2$ (и $-2C$ называем $C$):
+$${1\over u^2}=-{x^4\over2}+C={2C-x^4\over2}.$$
+Переворачиваем дробь и называем $2C$ снова $C$:
+$$u^2={2\over C-x^4}.$$
+\st{Шаг 5.} Мы нашли $u^2$, поэтому возводим $y=uv$ в квадрат:
+$$y^2=u^2v^2={2\over C-x^4}\cdot x^2={2x^2\over C-x^4}.$$
+\smallskip
+Потерянное решение: $y=0$ (проверка: $0={0\over x}+x\cdot0$).
+\ans{y^2={2x^2\over C-x^4},\quad y=0}
+
+%---------------------------------------------------------------- 6
+\problem{6}{$x\,y'+2y=\sqrt y$}
+\st{Шаг 1.} Делим на $x$ (считаем $x>0$) и пишем корень как степень
+$\sqrt y=y^{1/2}$:
+$$y'+{2\over x}\,y={1\over x}\,y^{1/2}.$$
+Значит, $P={2\over x}$, $Q={1\over x}$, $n={1\over2}$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\left(v'+{2v\over x}\right)={1\over x}\,u^{1/2}v^{1/2}.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+{2v\over x}=0$.
+$${dv\over v}=-{2\,dx\over x}\quad\Rightarrow\quad\ln|v|=-2\ln|x|=\ln x^{-2}
+\quad\Rightarrow\quad v={1\over x^2}.$$
+\st{Шаг 4.} Остаётся $u'v={1\over x}u^{1/2}v^{1/2}$. Делим на $v$:
+$$u'={1\over x}\,u^{1/2}\,v^{-1/2}.$$
+Находим $v^{-1/2}=\left({1\over x^2}\right)^{-1/2}=(x^2)^{1/2}=x$
+(при $x>0$). Подставляем:
+$$u'={1\over x}\,u^{1/2}\cdot x=u^{1/2}=\sqrt u.$$
+Разделяем переменные и интегрируем ($\int u^{-1/2}du={u^{1/2}\over1/2}=2\sqrt u$):
+$${du\over\sqrt u}=dx\quad\Rightarrow\quad2\sqrt u=x+C
+\quad\Rightarrow\quad\sqrt u={x+C\over2}\quad\Rightarrow\quad
+u={(x+C)^2\over4}.$$
+\st{Шаг 5.} $y=uv={(x+C)^2\over4}\cdot{1\over x^2}={(x+C)^2\over4x^2}$.
+\smallskip
+Потерянное решение: $y=0$ (проверка: $x\cdot0+2\cdot0=\sqrt0$).
+\smallskip
+Замечание: так как $\sqrt y\ge0$, на самом деле должно быть $x+C\ge0$.
+Для классной работы это можно не обсуждать.
+\ans{y={(x+C)^2\over4x^2},\quad y=0}
+
+%---------------------------------------------------------------- 7
+\problem{7}{$x\,y'+y=y^2\ln x$}
+\st{Шаг 1.} Делим на $x$ (считаем $x>0$, ведь есть $\ln x$):
+$$y'+{1\over x}\,y={\ln x\over x}\,y^2.$$
+Значит, $P={1\over x}$, $Q={\ln x\over x}$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\left(v'+{v\over x}\right)={\ln x\over x}\,u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+{v\over x}=0$.
+$${dv\over v}=-{dx\over x}\quad\Rightarrow\quad\ln|v|=-\ln|x|
+\quad\Rightarrow\quad v={1\over x}.$$
+\st{Шаг 4.} Остаётся $u'v={\ln x\over x}u^2v^2$. Делим на $v$:
+$$u'={\ln x\over x}\,u^2v={\ln x\over x}\cdot{1\over x}\,u^2={\ln x\over x^2}\,u^2.$$
+Разделяем переменные:
+$${du\over u^2}={\ln x\over x^2}\,dx.$$
+Слева $-{1\over u}$. Справа нужен интеграл $\int{\ln x\over x^2}dx=\int\ln x\cdot x^{-2}dx$
+--- берём по частям. Пусть $p=\ln x$, $dq=x^{-2}dx$. Тогда
+$dp={dx\over x}$, $q=-{1\over x}$, и
+$$\int\ln x\cdot x^{-2}dx=-{\ln x\over x}-\int\left(-{1\over x}\right){dx\over x}
+=-{\ln x\over x}+\int{dx\over x^2}=-{\ln x\over x}-{1\over x}.$$
+Итак,
+$$-{1\over u}=-{\ln x+1\over x}+C\quad\Rightarrow\quad
+{1\over u}={\ln x+1\over x}+C={\ln x+1+Cx\over x}$$
+(умножили на $-1$ и $-C$ назвали $C$; затем привели к общему знаменателю).
+Переворачиваем дробь: $u={x\over\ln x+1+Cx}$.
+\st{Шаг 5.} $y=uv={x\over\ln x+1+Cx}\cdot{1\over x}={1\over\ln x+1+Cx}$.
+\smallskip
+Потерянное решение: $y=0$ (проверка: $x\cdot0+0=0^2\ln x$).
+\ans{y={1\over\ln x+1+Cx},\quad y=0}
+
+%---------------------------------------------------------------- 8
+\problem{8}{$y'+y=x\,y^3$}
+\st{Шаг 1.} $P=1$, $Q=x$, $n=3$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'+v)=x\,u^3v^3.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+v=0$.
+$${dv\over v}=-dx\quad\Rightarrow\quad\ln|v|=-x\quad\Rightarrow\quad v=e^{-x}.$$
+\st{Шаг 4.} Остаётся $u'v=x\,u^3v^3$. Делим на $v$:
+$$u'=x\,u^3v^2=x\,u^3\,(e^{-x})^2=x\,e^{-2x}u^3.$$
+Разделяем переменные:
+$${du\over u^3}=x\,e^{-2x}dx.$$
+Слева $\int u^{-3}du=-{1\over2u^2}$. Справа берём по частям: $p=x$,
+$dq=e^{-2x}dx$, тогда $dp=dx$, $q=-{e^{-2x}\over2}$:
+$$\int x\,e^{-2x}dx=-{x\,e^{-2x}\over2}+{1\over2}\int e^{-2x}dx
+=-{x\,e^{-2x}\over2}-{e^{-2x}\over4}.$$
+Получаем
+$$-{1\over2u^2}=-{x\,e^{-2x}\over2}-{e^{-2x}\over4}+C.$$
+Умножаем на $-2$ (и $-2C$ называем $C$):
+$${1\over u^2}=x\,e^{-2x}+{e^{-2x}\over2}+C=e^{-2x}\left(x+{1\over2}\right)+C.$$
+Значит, $u^2={1\over e^{-2x}(x+{1\over2})+C}$.
+\st{Шаг 5.} Возводим $y=uv$ в квадрат, $v^2=e^{-2x}$:
+$$y^2=u^2v^2={e^{-2x}\over e^{-2x}\left(x+{1\over2}\right)+C}.$$
+Делим числитель и знаменатель на $e^{-2x}$ (при этом $C/e^{-2x}=Ce^{2x}$):
+$$y^2={1\over x+{1\over2}+Ce^{2x}}.$$
+\smallskip
+Потерянное решение: $y=0$ (проверка: $0+0=x\cdot0^3$).
+\ans{y^2={1\over x+{1\over2}+Ce^{2x}},\quad y=0}
+
+%---------------------------------------------------------------- 9
+\problem{9}{$y'+y={x\over y}$}
+\st{Шаг 1.} Пишем ${x\over y}=x\,y^{-1}$. Тогда $y'+y=x\,y^{-1}$:
+$P=1$, $Q=x$, $n=-1$ (отрицательная степень --- это тоже
+уравнение Бернулли).
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'+v)=x\,u^{-1}v^{-1}.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+v=0$, откуда, как в задаче 8,
+$v=e^{-x}$.
+\st{Шаг 4.} Остаётся $u'v=x\,u^{-1}v^{-1}$. Делим на $v$:
+$$u'=x\,u^{-1}v^{-2}=x\,u^{-1}(e^{-x})^{-2}={x\,e^{2x}\over u}.$$
+Разделяем переменные: умножаем на $u$ и на $dx$:
+$$u\,du=x\,e^{2x}dx.$$
+Слева $\int u\,du={u^2\over2}$. Справа по частям: $p=x$, $dq=e^{2x}dx$,
+$dp=dx$, $q={e^{2x}\over2}$:
+$$\int x\,e^{2x}dx={x\,e^{2x}\over2}-{1\over2}\int e^{2x}dx
+={x\,e^{2x}\over2}-{e^{2x}\over4}.$$
+Получаем
+$${u^2\over2}={x\,e^{2x}\over2}-{e^{2x}\over4}+C.$$
+Умножаем на $2$ (и $2C$ называем $C$):
+$$u^2=x\,e^{2x}-{e^{2x}\over2}+C=e^{2x}\left(x-{1\over2}\right)+C.$$
+\st{Шаг 5.} Возводим $y=uv$ в квадрат, $v^2=e^{-2x}$:
+$$y^2=u^2v^2=e^{-2x}\left[e^{2x}\left(x-{1\over2}\right)+C\right]
+=x-{1\over2}+Ce^{-2x}.$$
+\smallskip
+Решение $y=0$ здесь \underbar{не} подходит: в исходном уравнении $y$ стоит в
+знаменателе.
+\ans{y^2=x-{1\over2}+Ce^{-2x}}
+
+%---------------------------------------------------------------- 10
+\problem{10}{$y'-2xy=2x^3y^2$}
+\st{Шаг 1.} $P=-2x$, $Q=2x^3$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'-2xv)=2x^3u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'-2xv=0$.
+$${dv\over v}=2x\,dx\quad\Rightarrow\quad\ln|v|=x^2\quad\Rightarrow\quad v=e^{x^2}.$$
+\st{Шаг 4.} Остаётся $u'v=2x^3u^2v^2$. Делим на $v$:
+$$u'=2x^3u^2v=2x^3e^{x^2}u^2.$$
+Разделяем переменные:
+$${du\over u^2}=2x^3e^{x^2}dx.$$
+Слева $-{1\over u}$. Справа нужен интеграл $\int2x^3e^{x^2}dx$. Делаем замену
+$t=x^2$. Тогда $dt=2x\,dx$, и $2x^3dx=x^2\cdot2x\,dx=t\,dt$:
+$$\int2x^3e^{x^2}dx=\int t\,e^{t}dt.$$
+Берём по частям: $p=t$, $dq=e^tdt$, $dp=dt$, $q=e^t$:
+$$\int t\,e^tdt=t\,e^t-\int e^tdt=t\,e^t-e^t=(t-1)e^t=(x^2-1)e^{x^2}.$$
+Получаем
+$$-{1\over u}=(x^2-1)e^{x^2}+C\quad\Rightarrow\quad
+u=-{1\over(x^2-1)e^{x^2}+C}.$$
+\st{Шаг 5.} $y=uv=-{e^{x^2}\over(x^2-1)e^{x^2}+C}$. Делим числитель и
+знаменатель на $e^{x^2}$:
+$$y=-{1\over x^2-1+Ce^{-x^2}}={1\over1-x^2-Ce^{-x^2}}={1\over1-x^2+Ce^{-x^2}}$$
+(в последнем равенстве $-C$ назвали $C$).
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y={1\over1-x^2+Ce^{-x^2}},\quad y=0}
+
+\vfil\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\bf Домашняя работа}
+\bigskip
+
+\line{\boxnum{1}\quad $y'-y=y^2$\hfil}
+\bigskip
+
+\line{\boxnum{2}\quad $y'+{2y\over x}=x^2y^2$\hfil}
+\bigskip
+
+\line{\boxnum{3}\quad $y'+3y=e^{x}y^2$\hfil}
+\bigskip
+
+\line{\boxnum{4}\quad $y'\sin x-y\cos x=y^2$\hfil}
+\bigskip
+
+\line{\boxnum{5}\quad $y'={2y\over x}+x\,y^3$\hfil}
+\bigskip
+
+\line{\boxnum{6}\quad $x\,y'-2y=x^2\sqrt y$\hfil}
+\bigskip
+
+\line{\boxnum{7}\quad $x\,y'+2y=y^2\ln x$\hfil}
+\bigskip
+
+\line{\boxnum{8}\quad $y'+y=2x\,y^3$\hfil}
+\bigskip
+
+\line{\boxnum{9}\quad $y'-y={x\over y}$\hfil}
+\bigskip
+
+\line{\boxnum{10}\quad $y'-xy=x^3y^2$\hfil}
+
+\vfil\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\bf Домашняя работа: решения}
+\bigskip
+
+%---------------------------------------------------------------- H1
+\problem{1}{$y'-y=y^2$}
+\st{Шаг 1.} $P=-1$, $Q=1$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+uv'-uv=u^2v^2\quad\Rightarrow\quad u'v+u\,(v'-v)=u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'-v=0$.
+$${dv\over v}=dx\quad\Rightarrow\quad\ln|v|=x\quad\Rightarrow\quad v=e^{x}.$$
+\st{Шаг 4.} Остаётся $u'v=u^2v^2$. Делим на $v$:
+$$u'=u^2v=e^{x}u^2.$$
+Разделяем переменные и интегрируем:
+$${du\over u^2}=e^{x}dx\quad\Rightarrow\quad-{1\over u}=e^{x}+C
+\quad\Rightarrow\quad{1\over u}=-e^{x}-C.$$
+Называем $-C$ снова $C$: ${1\over u}=C-e^{x}$, откуда $u={1\over C-e^{x}}$.
+\st{Шаг 5.} $y=uv={e^{x}\over C-e^{x}}$.
+\smallskip
+Потерянное решение: $y=0$ (проверка: $0-0=0^2$).
+\ans{y={e^{x}\over C-e^{x}},\quad y=0}
+
+%---------------------------------------------------------------- H2
+\problem{2}{$y'+{2y\over x}=x^2y^2$}
+\st{Шаг 1.} $P={2\over x}$, $Q=x^2$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\left(v'+{2v\over x}\right)=x^2u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+{2v\over x}=0$.
+$${dv\over v}=-{2\,dx\over x}\quad\Rightarrow\quad\ln|v|=-2\ln|x|
+\quad\Rightarrow\quad v={1\over x^2}.$$
+\st{Шаг 4.} Остаётся $u'v=x^2u^2v^2$. Делим на $v$:
+$$u'=x^2u^2v=x^2u^2\cdot{1\over x^2}=u^2.$$
+Разделяем переменные:
+$${du\over u^2}=dx\quad\Rightarrow\quad-{1\over u}=x+C
+\quad\Rightarrow\quad u=-{1\over x+C}.$$
+\st{Шаг 5.} $y=uv=-{1\over x+C}\cdot{1\over x^2}=-{1\over x^2(x+C)}$.
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y=-{1\over x^2(x+C)},\quad y=0}
+
+%---------------------------------------------------------------- H3
+\problem{3}{$y'+3y=e^{x}y^2$}
+\st{Шаг 1.} $P=3$, $Q=e^{x}$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'+3v)=e^{x}u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+3v=0$.
+$${dv\over v}=-3\,dx\quad\Rightarrow\quad\ln|v|=-3x\quad\Rightarrow\quad v=e^{-3x}.$$
+\st{Шаг 4.} Остаётся $u'v=e^{x}u^2v^2$. Делим на $v$:
+$$u'=e^{x}u^2v=e^{x}e^{-3x}u^2=e^{-2x}u^2.$$
+Разделяем переменные ($\int e^{-2x}dx=-{e^{-2x}\over2}$):
+$${du\over u^2}=e^{-2x}dx\quad\Rightarrow\quad-{1\over u}=-{e^{-2x}\over2}+C
+\quad\Rightarrow\quad{1\over u}={e^{-2x}\over2}+C={e^{-2x}+2C\over2}.$$
+(Умножили на $-1$ и $-C$ назвали $C$; затем привели к общему знаменателю.)
+Называем $2C$ снова $C$ и переворачиваем дробь:
+$$u={2\over e^{-2x}+C}.$$
+\st{Шаг 5.} $y=uv={2e^{-3x}\over e^{-2x}+C}$. Умножаем числитель и
+знаменатель на $e^{3x}$: в числителе получаем $2$, в знаменателе
+$e^{3x}e^{-2x}+Ce^{3x}=e^{x}+Ce^{3x}$.
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y={2\over e^{x}+Ce^{3x}},\quad y=0}
+
+%---------------------------------------------------------------- H4
+\problem{4}{$y'\sin x-y\cos x=y^2$}
+\st{Шаг 1.} Делим на $\sin x$:
+$$y'-y\,{\cos x\over\sin x}={y^2\over\sin x}\quad\Rightarrow\quad
+y'-y\cot x={1\over\sin x}\,y^2.$$
+Значит, $P=-\cot x$, $Q={1\over\sin x}$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'-v\cot x)={1\over\sin x}\,u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'-v\cot x=0$.
+$${dv\over v}=\cot x\,dx.$$
+Интеграл: $\int\cot x\,dx=\int{\cos x\over\sin x}dx=\ln|\sin x|$
+(так как $d(\sin x)=\cos x\,dx$). Поэтому
+$$\ln|v|=\ln|\sin x|\quad\Rightarrow\quad v=\sin x.$$
+\st{Шаг 4.} Остаётся $u'v={1\over\sin x}u^2v^2$. Делим на $v$:
+$$u'={1\over\sin x}\,u^2v={1\over\sin x}\,u^2\sin x=u^2.$$
+Разделяем переменные:
+$${du\over u^2}=dx\quad\Rightarrow\quad-{1\over u}=x+C
+\quad\Rightarrow\quad u=-{1\over x+C}.$$
+\st{Шаг 5.} $y=uv=-{\sin x\over x+C}$.
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y=-{\sin x\over x+C},\quad y=0}
+
+%---------------------------------------------------------------- H5
+\problem{5}{$y'={2y\over x}+x\,y^3$}
+\st{Шаг 1.} Переносим ${2y\over x}$ влево:
+$y'-{2\over x}\,y=x\,y^3$. Значит, $P=-{2\over x}$, $Q=x$, $n=3$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\left(v'-{2v\over x}\right)=x\,u^3v^3.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'-{2v\over x}=0$.
+$${dv\over v}={2\,dx\over x}\quad\Rightarrow\quad\ln|v|=2\ln|x|=\ln x^2
+\quad\Rightarrow\quad v=x^2.$$
+\st{Шаг 4.} Остаётся $u'v=x\,u^3v^3$. Делим на $v$:
+$$u'=x\,u^3v^2=x\,u^3\,(x^2)^2=x^5u^3.$$
+Разделяем переменные:
+$${du\over u^3}=x^5dx\quad\Rightarrow\quad-{1\over2u^2}={x^6\over6}+C.$$
+Умножаем на $-2$ (и $-2C$ называем $C$):
+$${1\over u^2}=-{x^6\over3}+C={3C-x^6\over3}.$$
+Переворачиваем дробь и называем $3C$ снова $C$:
+$$u^2={3\over C-x^6}.$$
+\st{Шаг 5.} Возводим $y=uv$ в квадрат, $v^2=x^4$:
+$$y^2=u^2v^2={3x^4\over C-x^6}.$$
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y^2={3x^4\over C-x^6},\quad y=0}
+
+%---------------------------------------------------------------- H6
+\problem{6}{$x\,y'-2y=x^2\sqrt y$}
+\st{Шаг 1.} Делим на $x$ (считаем $x>0$), $\sqrt y=y^{1/2}$:
+$$y'-{2\over x}\,y=x\,y^{1/2}.$$
+Значит, $P=-{2\over x}$, $Q=x$, $n={1\over2}$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\left(v'-{2v\over x}\right)=x\,u^{1/2}v^{1/2}.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'-{2v\over x}=0$, откуда, как в задаче 5,
+$v=x^2$.
+\st{Шаг 4.} Остаётся $u'v=x\,u^{1/2}v^{1/2}$. Делим на $v$:
+$$u'=x\,u^{1/2}v^{-1/2}.$$
+Находим $v^{-1/2}=(x^2)^{-1/2}={1\over x}$ (при $x>0$). Подставляем:
+$$u'=x\,u^{1/2}\cdot{1\over x}=\sqrt u.$$
+Разделяем переменные ($\int u^{-1/2}du=2\sqrt u$):
+$${du\over\sqrt u}=dx\quad\Rightarrow\quad2\sqrt u=x+C\quad\Rightarrow\quad
+u={(x+C)^2\over4}.$$
+\st{Шаг 5.} $y=uv={(x+C)^2\over4}\cdot x^2={x^2(x+C)^2\over4}$.
+\smallskip
+Потерянное решение: $y=0$ (проверка: $x\cdot0-2\cdot0=x^2\sqrt0$).
+\smallskip
+Замечание: так как $\sqrt y\ge0$, должно быть $x+C\ge0$ (при $x>0$).
+\ans{y={x^2(x+C)^2\over4},\quad y=0}
+
+%---------------------------------------------------------------- H7
+\problem{7}{$x\,y'+2y=y^2\ln x$}
+\st{Шаг 1.} Делим на $x$ (считаем $x>0$):
+$$y'+{2\over x}\,y={\ln x\over x}\,y^2.$$
+Значит, $P={2\over x}$, $Q={\ln x\over x}$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\left(v'+{2v\over x}\right)={\ln x\over x}\,u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+{2v\over x}=0$, откуда (как в задаче 2)
+$v={1\over x^2}$.
+\st{Шаг 4.} Остаётся $u'v={\ln x\over x}u^2v^2$. Делим на $v$:
+$$u'={\ln x\over x}\,u^2v={\ln x\over x}\cdot{1\over x^2}\,u^2={\ln x\over x^3}\,u^2.$$
+Разделяем переменные:
+$${du\over u^2}={\ln x\over x^3}\,dx.$$
+Слева $-{1\over u}$. Справа берём по частям: $p=\ln x$, $dq=x^{-3}dx$;
+тогда $dp={dx\over x}$, $q=-{1\over2x^2}$:
+$$\int\ln x\cdot x^{-3}dx=-{\ln x\over2x^2}+\int{1\over2x^2}\cdot{dx\over x}
+=-{\ln x\over2x^2}+{1\over2}\int x^{-3}dx
+=-{\ln x\over2x^2}-{1\over4x^2}.$$
+Общий знаменатель: это $-{2\ln x+1\over4x^2}$. Значит,
+$$-{1\over u}=-{2\ln x+1\over4x^2}+C\quad\Rightarrow\quad
+{1\over u}={2\ln x+1\over4x^2}+C={2\ln x+1+4Cx^2\over4x^2}.$$
+Называем $4C$ снова $C$ и переворачиваем дробь:
+$$u={4x^2\over2\ln x+1+Cx^2}.$$
+\st{Шаг 5.} $y=uv={4x^2\over2\ln x+1+Cx^2}\cdot{1\over x^2}
+={4\over2\ln x+1+Cx^2}$.
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y={4\over2\ln x+1+Cx^2},\quad y=0}
+
+%---------------------------------------------------------------- H8
+\problem{8}{$y'+y=2x\,y^3$}
+\st{Шаг 1.} $P=1$, $Q=2x$, $n=3$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'+v)=2x\,u^3v^3.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'+v=0$, откуда $v=e^{-x}$.
+\st{Шаг 4.} Остаётся $u'v=2x\,u^3v^3$. Делим на $v$:
+$$u'=2x\,u^3v^2=2x\,e^{-2x}u^3.$$
+Разделяем переменные:
+$${du\over u^3}=2x\,e^{-2x}dx.$$
+Слева $-{1\over2u^2}$. Справа берём по частям: $p=2x$, $dq=e^{-2x}dx$;
+тогда $dp=2\,dx$, $q=-{e^{-2x}\over2}$:
+$$\int2x\,e^{-2x}dx=-x\,e^{-2x}+\int e^{-2x}dx=-x\,e^{-2x}-{e^{-2x}\over2}.$$
+Получаем
+$$-{1\over2u^2}=-x\,e^{-2x}-{e^{-2x}\over2}+C.$$
+Умножаем на $-2$ (и $-2C$ называем $C$):
+$${1\over u^2}=2x\,e^{-2x}+e^{-2x}+C=e^{-2x}(2x+1)+C.$$
+\st{Шаг 5.} $u^2={1\over e^{-2x}(2x+1)+C}$, и $v^2=e^{-2x}$, поэтому
+$$y^2=u^2v^2={e^{-2x}\over e^{-2x}(2x+1)+C}.$$
+Делим числитель и знаменатель на $e^{-2x}$:
+$$y^2={1\over2x+1+Ce^{2x}}.$$
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y^2={1\over2x+1+Ce^{2x}},\quad y=0}
+
+%---------------------------------------------------------------- H9
+\problem{9}{$y'-y={x\over y}$}
+\st{Шаг 1.} Пишем ${x\over y}=x\,y^{-1}$:
+$y'-y=x\,y^{-1}$. Значит, $P=-1$, $Q=x$, $n=-1$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'-v)=x\,u^{-1}v^{-1}.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'-v=0$, откуда $v=e^{x}$.
+\st{Шаг 4.} Остаётся $u'v=x\,u^{-1}v^{-1}$. Делим на $v$:
+$$u'=x\,u^{-1}v^{-2}=x\,u^{-1}e^{-2x}={x\,e^{-2x}\over u}.$$
+Разделяем переменные:
+$$u\,du=x\,e^{-2x}dx.$$
+Слева $\int u\,du={u^2\over2}$. Справа по частям: $p=x$,
+$dq=e^{-2x}dx$, $dp=dx$, $q=-{e^{-2x}\over2}$:
+$$\int x\,e^{-2x}dx=-{x\,e^{-2x}\over2}+{1\over2}\int e^{-2x}dx
+=-{x\,e^{-2x}\over2}-{e^{-2x}\over4}.$$
+Получаем
+$${u^2\over2}=-{x\,e^{-2x}\over2}-{e^{-2x}\over4}+C.$$
+Умножаем на $2$ (и $2C$ называем $C$):
+$$u^2=-x\,e^{-2x}-{e^{-2x}\over2}+C=C-e^{-2x}\left(x+{1\over2}\right).$$
+\st{Шаг 5.} Возводим $y=uv$ в квадрат, $v^2=e^{2x}$:
+$$y^2=u^2v^2=e^{2x}\left[C-e^{-2x}\left(x+{1\over2}\right)\right]
+=Ce^{2x}-x-{1\over2}.$$
+\smallskip
+Решение $y=0$ не подходит: в исходном уравнении $y$ стоит в знаменателе.
+\ans{y^2=Ce^{2x}-x-{1\over2}}
+
+%---------------------------------------------------------------- H10
+\problem{10}{$y'-xy=x^3y^2$}
+\st{Шаг 1.} $P=-x$, $Q=x^3$, $n=2$.
+\st{Шаг 2.} Подстановка $y=uv$, $y'=u'v+uv'$:
+$$u'v+u\,(v'-xv)=x^3u^2v^2.\eqno(*)$$
+\st{Шаг 3.} Скобка равна нулю: $v'-xv=0$.
+$${dv\over v}=x\,dx\quad\Rightarrow\quad\ln|v|={x^2\over2}
+\quad\Rightarrow\quad v=e^{x^2/2}.$$
+\st{Шаг 4.} Остаётся $u'v=x^3u^2v^2$. Делим на $v$:
+$$u'=x^3u^2v=x^3e^{x^2/2}u^2.$$
+Разделяем переменные:
+$${du\over u^2}=x^3e^{x^2/2}dx.$$
+Слева $-{1\over u}$. Справа делаем замену $t={x^2\over2}$. Тогда
+$dt=x\,dx$ и $x^2=2t$, поэтому $x^3dx=x^2\cdot x\,dx=2t\,dt$:
+$$\int x^3e^{x^2/2}dx=\int2t\,e^tdt.$$
+По частям ($p=t$, $dq=e^tdt$, $dp=dt$, $q=e^t$):
+$$\int t\,e^tdt=t\,e^t-e^t=(t-1)e^t,\qquad\hbox{значит}\qquad
+\int2t\,e^tdt=2(t-1)e^t=(x^2-2)e^{x^2/2}.$$
+Получаем
+$$-{1\over u}=(x^2-2)e^{x^2/2}+C\quad\Rightarrow\quad
+u=-{1\over(x^2-2)e^{x^2/2}+C}.$$
+\st{Шаг 5.} $y=uv=-{e^{x^2/2}\over(x^2-2)e^{x^2/2}+C}$. Делим числитель и
+знаменатель на $e^{x^2/2}$:
+$$y=-{1\over x^2-2+Ce^{-x^2/2}}={1\over2-x^2-Ce^{-x^2/2}}
+={1\over2-x^2+Ce^{-x^2/2}}$$
+(в последнем равенстве $-C$ назвали $C$).
+\smallskip
+Потерянное решение: $y=0$.
+\ans{y={1\over2-x^2+Ce^{-x^2/2}},\quad y=0}
+
+\bye
