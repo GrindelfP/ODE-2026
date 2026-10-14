@@ -1,0 +1,513 @@
+\magnification=\magstep1
+\hsize=16truecm
+\vsize=24truecm
+\parindent=0pt
+\baselineskip=14pt
+\raggedright
+\tolerance=10000
+\hbadness=10000
+
+\font\tenrm="Liberation Serif" at 10pt
+\font\tenbf="Liberation Serif/B" at 10pt
+\font\tenit="Liberation Serif/I" at 10pt
+\rm
+
+\def\boxnum#1{\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf#1}\kern5pt}\hrule}\vrule}}
+
+% заголовок задачи
+\def\problem#1#2{\vskip0pt plus 60pt\penalty-400\bigskip
+  \line{\boxnum{#1}\quad #2\hfil}\nobreak\smallskip}
+% заголовок шага решения
+\def\st#1{\medskip\noindent{\bf #1}\enspace\ignorespaces}
+% ответ в рамке
+\def\ans#1{\medskip\noindent\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf Ответ:}\enspace$\displaystyle #1$\kern5pt}\hrule}\vrule}\par}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\bf Линейные неоднородные уравнения 1-го порядка}
+\centerline{\bf (метод вариации постоянной)}
+\bigskip
+
+{\bf Памятка: как решать.}\quad Линейное неоднородное уравнение 1-го порядка
+--- это уравнение вида
+$$y'+P(x)\,y=Q(x),\qquad Q(x)\not\equiv0.$$
+Если $Q\equiv0$, уравнение называется однородным; оно решается разделением
+переменных. Неоднородное уравнение решаем в два приёма: сначала решаем
+соответствующее однородное, а потом в его решении заменяем постоянную $C$
+на функцию $C(x)$ (метод вариации постоянной, метод Лагранжа).
+\medskip
+
+{\bf Шаг 1.} Приводим уравнение к виду $y'+P\,y=Q$ (делим на коэффициент при
+$y'$, слагаемые с $y$ переносим влево) и выписываем $P$ и $Q$.
+\smallskip
+{\bf Шаг 2.} Решаем \underbar{однородное} уравнение $y'+P\,y=0$ (правую часть
+$Q$ временно отбрасываем). Это уравнение с разделяющимися переменными:
+${dy\over y}=-P\,dx$. Получаем общее решение $y=C\,v(x)$, где
+$v(x)=e^{-\int P\,dx}$, а $C$ --- произвольная постоянная.
+\smallskip
+{\bf Шаг 3.} Варьируем постоянную: ищем решение исходного уравнения в виде
+$$y=C(x)\,v(x),$$
+где теперь $C(x)$ --- \underbar{неизвестная функция}. Тогда
+$y'=C'v+Cv'$. Подставляем в $y'+Py=Q$ и группируем слагаемые с $C$:
+$$C'v+C\,(v'+Pv)=Q.$$
+Скобка равна нулю, потому что $v$ --- решение однородного уравнения
+($v'+Pv=0$). Остаётся
+$$C'(x)\,v(x)=Q(x).$$
+(На практике слагаемые с $C$ в левой части просто взаимно уничтожаются ---
+это хорошая проверка: если они не сократились, где-то ошибка.)
+\smallskip
+{\bf Шаг 4.} Находим $C'={Q\over v}$ и интегрируем:
+$C(x)=\int{Q\over v}\,dx+C_1$. Здесь появляется новая произвольная
+постоянная; её по-прежнему называем $C$.
+\smallskip
+{\bf Шаг 5.} Записываем ответ $y=C(x)\cdot v(x)$.
+\medskip
+
+{\bf Отличие от уравнений Бернулли.} Там мы искали \underbar{одно}
+решение $v$ и постоянную не писали. Здесь, наоборот, в шаге 2 постоянную $C$
+\underbar{пишем}, а потом превращаем её в функцию $C(x)$.
+\smallskip
+{\bf Про постоянную в шаге 2.} Из $\ln|y|=g(x)+c$ получаем $|y|=e^{c}e^{g(x)}$,
+то есть $y=\pm e^{c}e^{g(x)}$. Число $\pm e^c$ --- любое ненулевое; значение
+$C=0$ (решение $y=0$ однородного уравнения) тоже допустимо, поэтому пишем
+просто $y=C\,e^{g(x)}$.
+\smallskip
+{\bf Про структуру ответа.} Общее решение неоднородного уравнения всегда
+имеет вид
+$$y=(\hbox{одно частное решение})+C\,v(x),$$
+где $C\,v(x)$ --- общее решение однородного уравнения. Это можно использовать
+для самопроверки: слагаемое с $C$ в ответе должно совпадать с решением из
+шага 2. Решения при этом не теряются (мы ни на что не делим, кроме $v\ne0$).
+\smallskip
+{\bf Про интегралы.} Все формулы, которые нужны: $\int u^{k}\,du={u^{k+1}\over
+k+1}$ при $k\ne-1$; $\int{du\over u}=\ln|u|$; $\int e^{ax}dx={e^{ax}\over a}$;
+по частям: $\int p\,dq=pq-\int q\,dp$.
+
+\vfil\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\bf Классная работа}
+\bigskip
+
+%---------------------------------------------------------------- 1
+\problem{1}{$y'-y=e^{2x}$}
+\st{Шаг 1.} Уравнение уже имеет вид $y'+P\,y=Q$:
+$P=-1$, $Q=e^{2x}$.
+\st{Шаг 2.} Решаем однородное уравнение $y'-y=0$. Пишем $y'={dy\over dx}$ и
+разделяем переменные:
+$${dy\over dx}=y\quad\Rightarrow\quad{dy\over y}=dx
+\quad\Rightarrow\quad\ln|y|=x+c\quad\Rightarrow\quad y=C\,e^{x}.$$
+(Здесь $C=\pm e^{c}$; см.\ памятку.)
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{x}$. Тогда по правилу
+производной произведения
+$$y'=C'e^{x}+C\,e^{x}.$$
+Подставляем в исходное уравнение $y'-y=e^{2x}$:
+$$C'e^{x}+C\,e^{x}-C\,e^{x}=e^{2x}\quad\Rightarrow\quad C'e^{x}=e^{2x}.$$
+(Слагаемые с $C$ сократились, как и должно быть.)
+\st{Шаг 4.} Делим на $e^x$ и интегрируем:
+$$C'=e^{x}\quad\Rightarrow\quad C(x)=e^{x}+C.$$
+\st{Шаг 5.} $y=C(x)\,e^{x}=(e^{x}+C)\,e^{x}=e^{2x}+C\,e^{x}$.
+\smallskip
+Проверка структуры: $C\,e^x$ --- общее решение однородного уравнения,
+$e^{2x}$ --- частное решение неоднородного.
+\ans{y=e^{2x}+C\,e^{x}}
+
+%---------------------------------------------------------------- 2
+\problem{2}{$y'+{y\over x}=x^2$}
+\st{Шаг 1.} Уравнение уже в стандартном виде (считаем $x>0$):
+$P={1\over x}$, $Q=x^2$.
+\st{Шаг 2.} Однородное уравнение $y'+{y\over x}=0$:
+$${dy\over y}=-{dx\over x}\quad\Rightarrow\quad\ln|y|=-\ln x+c
+\quad\Rightarrow\quad y={C\over x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y={C(x)\over x}$. Тогда
+$$y'={C'\over x}-{C\over x^2}.$$
+(Производная частного: $\left({C\over x}\right)'={C'x-C\cdot1\over x^2}$.)
+Подставляем в $y'+{y\over x}=x^2$:
+$${C'\over x}-{C\over x^2}+{C\over x^2}=x^2\quad\Rightarrow\quad
+{C'\over x}=x^2.$$
+\st{Шаг 4.} Умножаем на $x$ и интегрируем:
+$$C'=x^3\quad\Rightarrow\quad C(x)={x^4\over4}+C.$$
+\st{Шаг 5.} $y={C(x)\over x}={1\over x}\left({x^4\over4}+C\right)
+={x^3\over4}+{C\over x}$.
+\ans{y={x^3\over4}+{C\over x}}
+
+%---------------------------------------------------------------- 3
+\problem{3}{$y'+3y=e^{-3x}$}
+\st{Шаг 1.} $P=3$, $Q=e^{-3x}$.
+\st{Шаг 2.} Однородное уравнение $y'+3y=0$:
+$${dy\over y}=-3\,dx\quad\Rightarrow\quad\ln|y|=-3x+c
+\quad\Rightarrow\quad y=C\,e^{-3x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{-3x}$. Тогда
+$$y'=C'e^{-3x}-3C\,e^{-3x}.$$
+Подставляем в $y'+3y=e^{-3x}$:
+$$C'e^{-3x}-3C\,e^{-3x}+3C\,e^{-3x}=e^{-3x}\quad\Rightarrow\quad
+C'e^{-3x}=e^{-3x}.$$
+\st{Шаг 4.} Делим на $e^{-3x}$:
+$$C'=1\quad\Rightarrow\quad C(x)=x+C.$$
+(Правая часть совпала с решением однородного уравнения --- это не страшно:
+просто получилось $C'=1$.)
+\st{Шаг 5.} $y=C(x)\,e^{-3x}=(x+C)\,e^{-3x}$.
+\ans{y=(x+C)\,e^{-3x}}
+
+%---------------------------------------------------------------- 4
+\problem{4}{$x\,y'-2y=x^3$}
+\st{Шаг 1.} Делим на $x$ (считаем $x>0$):
+$$y'-{2\over x}\,y=x^2.$$
+Значит, $P=-{2\over x}$, $Q=x^2$.
+\st{Шаг 2.} Однородное уравнение $y'-{2\over x}\,y=0$:
+$${dy\over y}={2\,dx\over x}\quad\Rightarrow\quad\ln|y|=2\ln x+c
+\quad\Rightarrow\quad y=C\,x^2.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,x^2$. Тогда
+$$y'=C'x^2+2x\,C.$$
+Подставляем в $y'-{2\over x}\,y=x^2$:
+$$C'x^2+2x\,C-{2\over x}\,C\,x^2=x^2\quad\Rightarrow\quad
+C'x^2+2x\,C-2x\,C=x^2\quad\Rightarrow\quad C'x^2=x^2.$$
+\st{Шаг 4.} Делим на $x^2$:
+$$C'=1\quad\Rightarrow\quad C(x)=x+C.$$
+\st{Шаг 5.} $y=C(x)\,x^2=(x+C)\,x^2=x^3+C\,x^2$.
+\ans{y=x^3+C\,x^2}
+
+%---------------------------------------------------------------- 5
+\problem{5}{$y'+y\tan x={1\over\cos x}$}
+\st{Шаг 1.} Уравнение уже в стандартном виде:
+$P=\tan x$, $Q={1\over\cos x}$.
+\st{Шаг 2.} Однородное уравнение $y'+y\tan x=0$:
+$${dy\over y}=-\tan x\,dx.$$
+Интеграл: $\int\tan x\,dx=\int{\sin x\over\cos x}dx=-\ln|\cos x|$
+(так как $d(\cos x)=-\sin x\,dx$). Поэтому
+$$\ln|y|=\ln|\cos x|+c\quad\Rightarrow\quad y=C\cos x.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\cos x$. Тогда
+$$y'=C'\cos x-C\sin x.$$
+Подставляем в $y'+y\tan x={1\over\cos x}$:
+$$C'\cos x-C\sin x+C\cos x\cdot{\sin x\over\cos x}={1\over\cos x}
+\quad\Rightarrow\quad C'\cos x={1\over\cos x}.$$
+(Слагаемые $-C\sin x$ и $+C\sin x$ сократились.)
+\st{Шаг 4.} Делим на $\cos x$:
+$$C'={1\over\cos^2x}\quad\Rightarrow\quad C(x)=\tan x+C$$
+(табличный интеграл: $(\tan x)'={1\over\cos^2x}$).
+\st{Шаг 5.} $y=C(x)\cos x=(\tan x+C)\cos x=\sin x+C\cos x$.
+\ans{y=\sin x+C\cos x}
+
+%---------------------------------------------------------------- 6
+\problem{6}{$y'+2y=x\,e^{-2x}$}
+\st{Шаг 1.} $P=2$, $Q=x\,e^{-2x}$.
+\st{Шаг 2.} Однородное уравнение $y'+2y=0$:
+$${dy\over y}=-2\,dx\quad\Rightarrow\quad\ln|y|=-2x+c
+\quad\Rightarrow\quad y=C\,e^{-2x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{-2x}$. Тогда
+$$y'=C'e^{-2x}-2C\,e^{-2x}.$$
+Подставляем в $y'+2y=x\,e^{-2x}$:
+$$C'e^{-2x}-2C\,e^{-2x}+2C\,e^{-2x}=x\,e^{-2x}\quad\Rightarrow\quad
+C'e^{-2x}=x\,e^{-2x}.$$
+\st{Шаг 4.} Делим на $e^{-2x}$:
+$$C'=x\quad\Rightarrow\quad C(x)={x^2\over2}+C.$$
+\st{Шаг 5.} $y=C(x)\,e^{-2x}=\left({x^2\over2}+C\right)e^{-2x}$.
+\ans{y=\left({x^2\over2}+C\right)e^{-2x}}
+
+%---------------------------------------------------------------- 7
+\problem{7}{$y'-2x\,y=x$}
+\st{Шаг 1.} $P=-2x$, $Q=x$.
+\st{Шаг 2.} Однородное уравнение $y'-2x\,y=0$:
+$${dy\over y}=2x\,dx\quad\Rightarrow\quad\ln|y|=x^2+c
+\quad\Rightarrow\quad y=C\,e^{x^2}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{x^2}$. Тогда
+$$y'=C'e^{x^2}+C\cdot2x\,e^{x^2}.$$
+(Производная $e^{x^2}$ --- это $2x\,e^{x^2}$.) Подставляем в $y'-2xy=x$:
+$$C'e^{x^2}+2x\,C\,e^{x^2}-2x\,C\,e^{x^2}=x\quad\Rightarrow\quad
+C'e^{x^2}=x.$$
+\st{Шаг 4.} Делим на $e^{x^2}$:
+$$C'=x\,e^{-x^2}.$$
+Интеграл берём заменой $t=-x^2$: тогда $dt=-2x\,dx$, то есть
+$x\,dx=-{dt\over2}$, и
+$$\int x\,e^{-x^2}dx=-{1\over2}\int e^{t}dt=-{1\over2}\,e^{-x^2}.$$
+Значит, $C(x)=-{1\over2}\,e^{-x^2}+C$.
+\st{Шаг 5.} $y=C(x)\,e^{x^2}=\left(-{1\over2}\,e^{-x^2}+C\right)e^{x^2}
+=-{1\over2}+C\,e^{x^2}$.
+\ans{y=-{1\over2}+C\,e^{x^2}}
+
+%---------------------------------------------------------------- 8
+\problem{8}{$y'+y=x$}
+\st{Шаг 1.} $P=1$, $Q=x$.
+\st{Шаг 2.} Однородное уравнение $y'+y=0$:
+$${dy\over y}=-dx\quad\Rightarrow\quad\ln|y|=-x+c
+\quad\Rightarrow\quad y=C\,e^{-x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{-x}$. Тогда
+$$y'=C'e^{-x}-C\,e^{-x}.$$
+Подставляем в $y'+y=x$:
+$$C'e^{-x}-C\,e^{-x}+C\,e^{-x}=x\quad\Rightarrow\quad C'e^{-x}=x.$$
+\st{Шаг 4.} Умножаем на $e^{x}$:
+$$C'=x\,e^{x}.$$
+Интеграл берём по частям: $p=x$, $dq=e^{x}dx$; тогда $dp=dx$, $q=e^{x}$:
+$$\int x\,e^{x}dx=x\,e^{x}-\int e^{x}dx=x\,e^{x}-e^{x}=(x-1)\,e^{x}.$$
+Значит, $C(x)=(x-1)\,e^{x}+C$.
+\st{Шаг 5.} $y=C(x)\,e^{-x}=\bigl((x-1)\,e^{x}+C\bigr)e^{-x}=x-1+C\,e^{-x}$.
+\smallskip
+Проверка: подставим частное решение $y=x-1$: $y'+y=1+x-1=x$ --- верно.
+\ans{y=x-1+C\,e^{-x}}
+
+%---------------------------------------------------------------- 9
+\problem{9}{$x\,y'+y=\ln x$}
+\st{Шаг 1.} Делим на $x$ ($x>0$, ведь есть $\ln x$):
+$$y'+{1\over x}\,y={\ln x\over x}.$$
+Значит, $P={1\over x}$, $Q={\ln x\over x}$.
+\st{Шаг 2.} Однородное уравнение $y'+{y\over x}=0$:
+$${dy\over y}=-{dx\over x}\quad\Rightarrow\quad\ln|y|=-\ln x+c
+\quad\Rightarrow\quad y={C\over x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y={C(x)\over x}$. Тогда
+$y'={C'\over x}-{C\over x^2}$. Подставляем в $y'+{y\over x}={\ln x\over x}$:
+$${C'\over x}-{C\over x^2}+{C\over x^2}={\ln x\over x}\quad\Rightarrow\quad
+{C'\over x}={\ln x\over x}.$$
+\st{Шаг 4.} Умножаем на $x$:
+$$C'=\ln x.$$
+Интеграл берём по частям: $p=\ln x$, $dq=dx$; тогда $dp={dx\over x}$, $q=x$:
+$$\int\ln x\,dx=x\ln x-\int x\cdot{dx\over x}=x\ln x-x.$$
+Значит, $C(x)=x\ln x-x+C$.
+\st{Шаг 5.} $y={C(x)\over x}={x\ln x-x+C\over x}=\ln x-1+{C\over x}$.
+\ans{y=\ln x-1+{C\over x}}
+
+%---------------------------------------------------------------- 10
+\problem{10}{$y'+y\cos x=\sin x\cos x$}
+\st{Шаг 1.} Уравнение уже в стандартном виде:
+$P=\cos x$, $Q=\sin x\cos x$.
+\st{Шаг 2.} Однородное уравнение $y'+y\cos x=0$:
+$${dy\over y}=-\cos x\,dx\quad\Rightarrow\quad\ln|y|=-\sin x+c
+\quad\Rightarrow\quad y=C\,e^{-\sin x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{-\sin x}$. Тогда
+$$y'=C'e^{-\sin x}-C\cos x\,e^{-\sin x}.$$
+(Производная $e^{-\sin x}$ --- это $-\cos x\,e^{-\sin x}$.) Подставляем в
+$y'+y\cos x=\sin x\cos x$:
+$$C'e^{-\sin x}-C\cos x\,e^{-\sin x}+C\cos x\,e^{-\sin x}=\sin x\cos x
+\quad\Rightarrow\quad C'e^{-\sin x}=\sin x\cos x.$$
+\st{Шаг 4.} Умножаем на $e^{\sin x}$:
+$$C'=\sin x\cos x\,e^{\sin x}.$$
+Делаем замену $t=\sin x$. Тогда $dt=\cos x\,dx$:
+$$\int\sin x\cos x\,e^{\sin x}dx=\int t\,e^{t}dt.$$
+По частям ($p=t$, $dq=e^tdt$, $dp=dt$, $q=e^t$):
+$$\int t\,e^tdt=t\,e^t-e^t=(t-1)\,e^t=(\sin x-1)\,e^{\sin x}.$$
+Значит, $C(x)=(\sin x-1)\,e^{\sin x}+C$.
+\st{Шаг 5.} $y=C(x)\,e^{-\sin x}=\bigl((\sin x-1)\,e^{\sin x}+C\bigr)e^{-\sin x}
+=\sin x-1+C\,e^{-\sin x}$.
+\ans{y=\sin x-1+C\,e^{-\sin x}}
+
+\vfil\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\bf Домашняя работа}
+\bigskip
+
+\line{\boxnum{1}\quad $y'+y=e^{3x}$\hfil}
+\bigskip
+
+\line{\boxnum{2}\quad $y'+{2y\over x}=x$\hfil}
+\bigskip
+
+\line{\boxnum{3}\quad $y'+2y=e^{-2x}$\hfil}
+\bigskip
+
+\line{\boxnum{4}\quad $x\,y'-3y=x^4$\hfil}
+\bigskip
+
+\line{\boxnum{5}\quad $y'+y\cot x=\cos x$\hfil}
+\bigskip
+
+\line{\boxnum{6}\quad $y'+y=e^{-x}\cos x$\hfil}
+\bigskip
+
+\line{\boxnum{7}\quad $y'+2x\,y=x$\hfil}
+\bigskip
+
+\line{\boxnum{8}\quad $y'-2y=x$\hfil}
+\bigskip
+
+\line{\boxnum{9}\quad $x\,y'+2y=\ln x$\hfil}
+\bigskip
+
+\line{\boxnum{10}\quad $y'-y\cos x=\sin x\cos x$\hfil}
+
+\vfil\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\bf Домашняя работа: решения}
+\bigskip
+
+%---------------------------------------------------------------- H1
+\problem{1}{$y'+y=e^{3x}$}
+\st{Шаг 1.} $P=1$, $Q=e^{3x}$.
+\st{Шаг 2.} Однородное уравнение $y'+y=0$:
+$${dy\over y}=-dx\quad\Rightarrow\quad\ln|y|=-x+c
+\quad\Rightarrow\quad y=C\,e^{-x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{-x}$, $y'=C'e^{-x}-C\,e^{-x}$.
+Подставляем в $y'+y=e^{3x}$:
+$$C'e^{-x}-C\,e^{-x}+C\,e^{-x}=e^{3x}\quad\Rightarrow\quad C'e^{-x}=e^{3x}.$$
+\st{Шаг 4.} Умножаем на $e^{x}$ (при этом $e^{3x}e^{x}=e^{4x}$):
+$$C'=e^{4x}\quad\Rightarrow\quad C(x)={e^{4x}\over4}+C.$$
+\st{Шаг 5.} $y=C(x)\,e^{-x}=\left({e^{4x}\over4}+C\right)e^{-x}
+={e^{3x}\over4}+C\,e^{-x}$.
+\ans{y={e^{3x}\over4}+C\,e^{-x}}
+
+%---------------------------------------------------------------- H2
+\problem{2}{$y'+{2y\over x}=x$}
+\st{Шаг 1.} Уравнение в стандартном виде (считаем $x>0$):
+$P={2\over x}$, $Q=x$.
+\st{Шаг 2.} Однородное уравнение $y'+{2y\over x}=0$:
+$${dy\over y}=-{2\,dx\over x}\quad\Rightarrow\quad\ln|y|=-2\ln x+c
+\quad\Rightarrow\quad y={C\over x^2}.$$
+\st{Шаг 3.} Варьируем постоянную: $y={C(x)\over x^2}$. Тогда
+$y'={C'\over x^2}-{2C\over x^3}$. Подставляем в $y'+{2y\over x}=x$:
+$${C'\over x^2}-{2C\over x^3}+{2C\over x^3}=x\quad\Rightarrow\quad
+{C'\over x^2}=x.$$
+\st{Шаг 4.} Умножаем на $x^2$:
+$$C'=x^3\quad\Rightarrow\quad C(x)={x^4\over4}+C.$$
+\st{Шаг 5.} $y={C(x)\over x^2}={x^2\over4}+{C\over x^2}$.
+\ans{y={x^2\over4}+{C\over x^2}}
+
+%---------------------------------------------------------------- H3
+\problem{3}{$y'+2y=e^{-2x}$}
+\st{Шаг 1.} $P=2$, $Q=e^{-2x}$.
+\st{Шаг 2.} Однородное уравнение $y'+2y=0$:
+$${dy\over y}=-2\,dx\quad\Rightarrow\quad\ln|y|=-2x+c
+\quad\Rightarrow\quad y=C\,e^{-2x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{-2x}$,
+$y'=C'e^{-2x}-2C\,e^{-2x}$. Подставляем в $y'+2y=e^{-2x}$:
+$$C'e^{-2x}-2C\,e^{-2x}+2C\,e^{-2x}=e^{-2x}\quad\Rightarrow\quad
+C'e^{-2x}=e^{-2x}.$$
+\st{Шаг 4.} Делим на $e^{-2x}$ (как в задаче 3 классной работы):
+$$C'=1\quad\Rightarrow\quad C(x)=x+C.$$
+\st{Шаг 5.} $y=C(x)\,e^{-2x}=(x+C)\,e^{-2x}$.
+\ans{y=(x+C)\,e^{-2x}}
+
+%---------------------------------------------------------------- H4
+\problem{4}{$x\,y'-3y=x^4$}
+\st{Шаг 1.} Делим на $x$ (считаем $x>0$):
+$$y'-{3\over x}\,y=x^3.$$
+Значит, $P=-{3\over x}$, $Q=x^3$.
+\st{Шаг 2.} Однородное уравнение $y'-{3\over x}\,y=0$:
+$${dy\over y}={3\,dx\over x}\quad\Rightarrow\quad\ln|y|=3\ln x+c
+\quad\Rightarrow\quad y=C\,x^3.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,x^3$, $y'=C'x^3+3x^2C$.
+Подставляем в $y'-{3\over x}\,y=x^3$:
+$$C'x^3+3x^2C-{3\over x}\,C\,x^3=x^3\quad\Rightarrow\quad
+C'x^3+3x^2C-3x^2C=x^3\quad\Rightarrow\quad C'x^3=x^3.$$
+\st{Шаг 4.} Делим на $x^3$:
+$$C'=1\quad\Rightarrow\quad C(x)=x+C.$$
+\st{Шаг 5.} $y=C(x)\,x^3=(x+C)\,x^3=x^4+C\,x^3$.
+\ans{y=x^4+C\,x^3}
+
+%---------------------------------------------------------------- H5
+\problem{5}{$y'+y\cot x=\cos x$}
+\st{Шаг 1.} Уравнение в стандартном виде (считаем $\sin x\ne0$):
+$P=\cot x$, $Q=\cos x$.
+\st{Шаг 2.} Однородное уравнение $y'+y\cot x=0$:
+$${dy\over y}=-\cot x\,dx.$$
+Интеграл: $\int\cot x\,dx=\int{\cos x\over\sin x}dx=\ln|\sin x|$
+(так как $d(\sin x)=\cos x\,dx$). Поэтому
+$$\ln|y|=-\ln|\sin x|+c\quad\Rightarrow\quad y={C\over\sin x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y={C(x)\over\sin x}$. Тогда
+$$y'={C'\over\sin x}-{C\cos x\over\sin^2x}.$$
+Подставляем в $y'+y\cot x=\cos x$ (учитываем, что
+$y\cot x={C\over\sin x}\cdot{\cos x\over\sin x}={C\cos x\over\sin^2x}$):
+$${C'\over\sin x}-{C\cos x\over\sin^2x}+{C\cos x\over\sin^2x}=\cos x
+\quad\Rightarrow\quad{C'\over\sin x}=\cos x.$$
+\st{Шаг 4.} Умножаем на $\sin x$ и интегрируем
+(замена $t=\sin x$, $dt=\cos x\,dx$, или $\int\sin x\,d(\sin x)$):
+$$C'=\sin x\cos x\quad\Rightarrow\quad C(x)={\sin^2x\over2}+C.$$
+\st{Шаг 5.} $y={C(x)\over\sin x}={\sin x\over2}+{C\over\sin x}$.
+\ans{y={\sin x\over2}+{C\over\sin x}}
+
+%---------------------------------------------------------------- H6
+\problem{6}{$y'+y=e^{-x}\cos x$}
+\st{Шаг 1.} $P=1$, $Q=e^{-x}\cos x$.
+\st{Шаг 2.} Однородное уравнение $y'+y=0$, как в задаче 8 классной работы:
+$y=C\,e^{-x}$.
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{-x}$,
+$y'=C'e^{-x}-C\,e^{-x}$. Подставляем в $y'+y=e^{-x}\cos x$:
+$$C'e^{-x}-C\,e^{-x}+C\,e^{-x}=e^{-x}\cos x\quad\Rightarrow\quad
+C'e^{-x}=e^{-x}\cos x.$$
+\st{Шаг 4.} Делим на $e^{-x}$:
+$$C'=\cos x\quad\Rightarrow\quad C(x)=\sin x+C.$$
+\st{Шаг 5.} $y=C(x)\,e^{-x}=(\sin x+C)\,e^{-x}$.
+\ans{y=(\sin x+C)\,e^{-x}}
+
+%---------------------------------------------------------------- H7
+\problem{7}{$y'+2x\,y=x$}
+\st{Шаг 1.} $P=2x$, $Q=x$.
+\st{Шаг 2.} Однородное уравнение $y'+2x\,y=0$:
+$${dy\over y}=-2x\,dx\quad\Rightarrow\quad\ln|y|=-x^2+c
+\quad\Rightarrow\quad y=C\,e^{-x^2}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{-x^2}$. Тогда
+$y'=C'e^{-x^2}-2x\,C\,e^{-x^2}$. Подставляем в $y'+2xy=x$:
+$$C'e^{-x^2}-2x\,C\,e^{-x^2}+2x\,C\,e^{-x^2}=x\quad\Rightarrow\quad
+C'e^{-x^2}=x.$$
+\st{Шаг 4.} Умножаем на $e^{x^2}$:
+$$C'=x\,e^{x^2}.$$
+Замена $t=x^2$, $dt=2x\,dx$, то есть $x\,dx={dt\over2}$:
+$$\int x\,e^{x^2}dx={1\over2}\int e^{t}dt={1\over2}\,e^{x^2}.$$
+Значит, $C(x)={1\over2}\,e^{x^2}+C$.
+\st{Шаг 5.} $y=C(x)\,e^{-x^2}=\left({1\over2}\,e^{x^2}+C\right)e^{-x^2}
+={1\over2}+C\,e^{-x^2}$.
+\ans{y={1\over2}+C\,e^{-x^2}}
+
+%---------------------------------------------------------------- H8
+\problem{8}{$y'-2y=x$}
+\st{Шаг 1.} $P=-2$, $Q=x$.
+\st{Шаг 2.} Однородное уравнение $y'-2y=0$:
+$${dy\over y}=2\,dx\quad\Rightarrow\quad\ln|y|=2x+c
+\quad\Rightarrow\quad y=C\,e^{2x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{2x}$,
+$y'=C'e^{2x}+2C\,e^{2x}$. Подставляем в $y'-2y=x$:
+$$C'e^{2x}+2C\,e^{2x}-2C\,e^{2x}=x\quad\Rightarrow\quad C'e^{2x}=x.$$
+\st{Шаг 4.} Умножаем на $e^{-2x}$:
+$$C'=x\,e^{-2x}.$$
+По частям: $p=x$, $dq=e^{-2x}dx$; тогда $dp=dx$, $q=-{e^{-2x}\over2}$:
+$$\int x\,e^{-2x}dx=-{x\,e^{-2x}\over2}+{1\over2}\int e^{-2x}dx
+=-{x\,e^{-2x}\over2}-{e^{-2x}\over4}.$$
+Значит, $C(x)=-{x\,e^{-2x}\over2}-{e^{-2x}\over4}+C$.
+\st{Шаг 5.} $y=C(x)\,e^{2x}=-{x\over2}-{1\over4}+C\,e^{2x}$.
+\smallskip
+Проверка: частное решение $y=-{x\over2}-{1\over4}$ даёт
+$y'-2y=-{1\over2}+x+{1\over2}=x$ --- верно.
+\ans{y=-{x\over2}-{1\over4}+C\,e^{2x}}
+
+%---------------------------------------------------------------- H9
+\problem{9}{$x\,y'+2y=\ln x$}
+\st{Шаг 1.} Делим на $x$ ($x>0$):
+$$y'+{2\over x}\,y={\ln x\over x}.$$
+Значит, $P={2\over x}$, $Q={\ln x\over x}$.
+\st{Шаг 2.} Однородное уравнение $y'+{2y\over x}=0$, как в задаче 2:
+$y={C\over x^2}$.
+\st{Шаг 3.} Варьируем постоянную: $y={C(x)\over x^2}$,
+$y'={C'\over x^2}-{2C\over x^3}$. Подставляем в
+$y'+{2y\over x}={\ln x\over x}$:
+$${C'\over x^2}-{2C\over x^3}+{2C\over x^3}={\ln x\over x}\quad\Rightarrow\quad
+{C'\over x^2}={\ln x\over x}.$$
+\st{Шаг 4.} Умножаем на $x^2$:
+$$C'=x\ln x.$$
+По частям: $p=\ln x$, $dq=x\,dx$; тогда $dp={dx\over x}$, $q={x^2\over2}$:
+$$\int x\ln x\,dx={x^2\ln x\over2}-\int{x^2\over2}\cdot{dx\over x}
+={x^2\ln x\over2}-{x^2\over4}.$$
+Значит, $C(x)={x^2\ln x\over2}-{x^2\over4}+C$.
+\st{Шаг 5.} $y={C(x)\over x^2}={\ln x\over2}-{1\over4}+{C\over x^2}$.
+\ans{y={\ln x\over2}-{1\over4}+{C\over x^2}}
+
+%---------------------------------------------------------------- H10
+\problem{10}{$y'-y\cos x=\sin x\cos x$}
+\st{Шаг 1.} $P=-\cos x$, $Q=\sin x\cos x$.
+\st{Шаг 2.} Однородное уравнение $y'-y\cos x=0$:
+$${dy\over y}=\cos x\,dx\quad\Rightarrow\quad\ln|y|=\sin x+c
+\quad\Rightarrow\quad y=C\,e^{\sin x}.$$
+\st{Шаг 3.} Варьируем постоянную: $y=C(x)\,e^{\sin x}$. Тогда
+$y'=C'e^{\sin x}+C\cos x\,e^{\sin x}$. Подставляем в
+$y'-y\cos x=\sin x\cos x$:
+$$C'e^{\sin x}+C\cos x\,e^{\sin x}-C\cos x\,e^{\sin x}=\sin x\cos x
+\quad\Rightarrow\quad C'e^{\sin x}=\sin x\cos x.$$
+\st{Шаг 4.} Умножаем на $e^{-\sin x}$:
+$$C'=\sin x\cos x\,e^{-\sin x}.$$
+Замена $t=\sin x$, $dt=\cos x\,dx$:
+$$\int\sin x\cos x\,e^{-\sin x}dx=\int t\,e^{-t}dt.$$
+По частям: $p=t$, $dq=e^{-t}dt$; тогда $dp=dt$, $q=-e^{-t}$:
+$$\int t\,e^{-t}dt=-t\,e^{-t}+\int e^{-t}dt=-t\,e^{-t}-e^{-t}
+=-(t+1)\,e^{-t}=-(\sin x+1)\,e^{-\sin x}.$$
+Значит, $C(x)=-(\sin x+1)\,e^{-\sin x}+C$.
+\st{Шаг 5.} $y=C(x)\,e^{\sin x}=-(\sin x+1)+C\,e^{\sin x}$.
+\ans{y=-\sin x-1+C\,e^{\sin x}}
+
+\bye
