@@ -221,3 +221,10 @@ __marimo__/
 
 secret/
 
+# Instructor notebooks must stay private even if moved out of secret/.
+LL-*.ipynb
+
+# TeX build intermediates (PDF handouts remain versioned).
+*.aux
+*.xdv
+*.synctex.gz
