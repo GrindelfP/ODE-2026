@@ -1,0 +1,78 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T2A]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else
+  \usepackage{fontspec}
+  \setmainfont{Liberation Serif}
+  \setmonofont{Liberation Mono}
+\fi
+\usepackage[russian]{babel}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+\begin{center}
+{\Large \textbf{Контрольная работа N.2}}\\[4pt]
+Вариант 0
+\end{center}
+
+\textbf{Время:} задание 1 -- 20 минут; задания 2 и 3 -- по 30 минут.
+
+\hrule
+
+\subsection*{Задание 1 (1 балл)}
+Решить уравнение второго порядка, допускающее понижение порядка:
+\[
+y\,y''+(y')^2=6x.
+\]
+
+\subsection*{Задание 2}
+Решить уравнение второго порядка методом неопределённых коэффициентов,
+проверить найденное решение подстановкой в исходное уравнение и решить
+задачу Коши:
+\[
+y''+2y'+2y=5\sin x, \qquad y(0)=0, \qquad y'(0)=1.
+\]
+
+\subsection*{Задание 3}
+Решить уравнение второго порядка методом вариации постоянных и проверить
+найденное решение подстановкой в исходное уравнение:
+\[
+y''+y=\tan x, \qquad |x|<\frac{\pi}{2}.
+\]
+
+\newpage
+\section*{Ответы для самопроверки}
+
+\textbf{1.}\quad
+\[
+y^2=2x^3+C_1x+C_2.
+\]
+
+\textbf{2.}\quad
+\[
+y=2e^{-x}(\cos x+\sin x)-2\cos x+\sin x.
+\]
+Для частного решения $y_p=-2\cos x+\sin x$:
+\[
+y_p''+2y_p'+2y_p=5\sin x,
+\]
+а также $y(0)=0$, $y'(0)=1$.
+
+\textbf{3.}\quad На интервале $|x|<\pi/2$:
+\[
+y=C_1\cos x+C_2\sin x-\cos x\ln(\sec x+\tan x).
+\]
+Для частного решения $y_p=-\cos x\ln(\sec x+\tan x)$:
+\[
+y_p''+y_p=\tan x.
+\]
+
+\end{document}
