@@ -1,363 +1,208 @@
-\magnification=\magstep1
-\hsize=16truecm
-\vsize=24truecm
+\documentclass[10pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\usepackage[margin=2cm]{geometry}
+\setmainfont{LiberationSerif-Regular.ttf}[
+  Path=/Users/grindelf/Library/Fonts/,
+  BoldFont=LiberationSerif-Bold.ttf,
+  ItalicFont=LiberationSerif-Italic.ttf,
+  BoldItalicFont=LiberationSerif-BoldItalic.ttf]
+\pagestyle{empty}
 \parindent=0pt
 \baselineskip=14pt
 \raggedright
 \tolerance=10000
 \hbadness=10000
-\font\tenrm="Liberation Serif:mapping=tex-text" at 10pt
-\font\tenbf="Liberation Serif/B:mapping=tex-text" at 10pt
-\font\tenit="Liberation Serif/I:mapping=tex-text" at 10pt
-\rm
+\newcommand{\eightit}{\itshape\fontsize{8}{10}\selectfont}
+\def\eject{\par\vfill\break}
+\begin{document}
 \def\boxnum#1{\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf#1}\kern5pt}\hrule}\vrule}}
 \def\problem#1#2{\vskip0pt plus 30pt\penalty-400\bigskip
-  \line{\boxnum{#1}\quad #2\hfil}\nobreak\smallskip}
+  \noindent\boxnum{#1}\quad #2\par\nobreak\smallskip}
 \def\st#1{\medskip\noindent{\bf #1}\enspace\ignorespaces}
+\def\why#1{\smallskip\noindent{\eightit Почему? #1}\smallskip}
 \def\ans#1{\medskip\noindent\hbox{\vrule\vbox{\hrule\hbox{\strut\kern5pt{\bf Ответ:}\enspace$\displaystyle #1$\kern5pt}\hrule}\vrule}\par}
 
 \centerline{\bf Семинар 11. Линейные неоднородные уравнения}
 \centerline{\bf второго порядка. Метод вариации постоянных}
 \bigskip
-{\bf Памятка: зачем ещё один метод?} Для полиномов, экспонент, синусов
-и косинусов мы умеем выбирать пробное решение. Но, например, для
-$1/\cos x$ такая таблица не даёт ответа. Вернёмся к идее, знакомой по
-ЛНДУ первого порядка: заменить постоянную интегрирования функцией.
-Теперь постоянных две, поэтому нужны две функции.
 
-Рассмотрим нормированное уравнение
-$$y''+p(x)y'+q(x)y=f(x).$$
-Если перед $y''$ стоит $a(x)\ne0$, сначала делим {\it всё} уравнение на
-$a(x)$, включая правую часть. Работаем на интервале, где коэффициенты и
-$f$ непрерывны. Пусть уже известно общее решение ЛОДУ
-$$y_h=C_1y_1(x)+C_2y_2(x).$$
-Пробуем искать частное решение в той же форме, но с меняющимися множителями:
-$$y_p=C_1(x)y_1(x)+C_2(x)y_2(x).$$
-При постоянных множителях левая часть равна нулю; изменения множителей
-должны создать нужную правую часть.
+\centerline{\bf Алгоритм вариации постоянных}
+\bigskip
+Рассматриваем ЛНДУ второго порядка на выбранном интервале:
+$$a(x)y''+b(x)y'+c(x)y=g(x).$$
 
-\st{Откуда дополнительное условие?} Одну функцию $y_p$ мы представили
-через две неизвестные функции. Такое представление избыточно: изменение
-первого слагаемого можно компенсировать вторым. Используем эту свободу,
-чтобы сделать производную похожей на производную однородного решения.
-По правилу произведения
-$$y_p'=C_1'y_1+C_2'y_2+C_1y_1'+C_2y_2'.$$
-Выбираем функции так, чтобы
-$$C_1'y_1+C_2'y_2=0.$$
-Это не новое условие на само уравнение или его начальные данные, а удобный
-выбор представления решения. Его выполнимость подтвердится разрешимостью
-системы ниже. Тогда
-$$y_p'=C_1y_1'+C_2y_2',\qquad
-y_p''=C_1'y_1'+C_2'y_2'+C_1y_1''+C_2y_2''.$$
-Подставляем в ЛНДУ и группируем:
-$$C_1'y_1'+C_2'y_2'+C_1(y_1''+py_1'+qy_1)
- +C_2(y_2''+py_2'+qy_2)=f.$$
-Скобки равны нулю, так как $y_1,y_2$ решают ЛОДУ. Получаем систему
-$$\cases{y_1C_1'+y_2C_2'=0,\cr
-             y_1'C_1'+y_2'C_2'=f.\cr}$$
+\st{Шаг 0. Нормировать уравнение.} Делим на $a(x)\ne0$:
+$$y''+p(x)y'+q(x)y=f(x),\qquad
+p={b\over a},\quad q={c\over a},\quad f={g\over a}.$$
+\why{Метод даёт систему с правой частью $f(x)$. Если не разделить на
+$a(x)$, в следующем шаге появится неверная правая часть.}
 
-\st{Как решить систему?} Её определитель
-$$W=y_1y_2'-y_2y_1'$$
-называется вронскианом. В наших примерах проверяем $W\ne0$ на выбранном
-интервале. Умножим первое уравнение на $y_2'$, второе на $y_2$ и вычтем:
-$WC_1'=-y_2f$. Аналогично, второе умножим на $y_1$, первое на $y_1'$:
-$WC_2'=y_1f$. Следовательно
+\st{Шаг 1. Решить ЛОДУ.} Решаем
+$$y''+p(x)y'+q(x)y=0$$
+и выбираем два линейно независимых решения $y_1,y_2$:
+$$y_h=A_1y_1+A_2y_2.$$
+
+\st{Шаг 2. Вычислить вронскиан.}
+$$W(x)=\left|\begin{array}{cc}y_1&y_2\\ y_1'&y_2'\end{array}\right|
+=y_1y_2'-y_2y_1'.$$
+На выбранном интервале должно быть $W(x)\ne0$.
+
+\st{Шаг 3. Ввести систему для меняющихся постоянных.} Ищем частное решение
+$$y_p=C_1(x)y_1(x)+C_2(x)y_2(x)$$
+и записываем
+$$\cases{C_1'y_1+C_2'y_2=0,\cr
+          C_1'y_1'+C_2'y_2'=f(x).\cr}$$
+\why{Первое равенство -- удобный выбор представления $y_p$: оно убирает
+лишние слагаемые из $y_p'$. После подстановки в нормированное ЛНДУ слагаемые
+с $C_1,C_2$ исчезают, потому что $y_1,y_2$ решают ЛОДУ; остаётся второе
+равенство.}
+
+\st{Шаг 4. Найти $C_1'$ и $C_2'$.}
 $$C_1'=-{y_2f\over W},\qquad C_2'={y_1f\over W}.$$
-Это обычная алгебраическая система относительно производных, а не новая
-система дифференциальных уравнений, которую надо решать особым методом.
+\why{Вронскиан -- определитель системы шага 3. Формулы получаются по правилу
+Крамера; деление на $W$ возможно именно при $W\ne0$.}
 
-\st{Интегрирование и ответ.}
-$$C_1(x)=-\int {y_2(x)f(x)\over W(x)}\,dx,\qquad
-C_2(x)=\int {y_1(x)f(x)\over W(x)}\,dx.$$
-Для одного частного решения постоянные этих интегралов берём равными нулю.
-Если их сохранить, они дадут уже известные слагаемые $y_h$.
-Итак, $y=y_h+C_1(x)y_1+C_2(x)y_2$. Не путайте функции $C_1(x),C_2(x)$
-в частном решении с произвольными {\it числами} $C_1,C_2$ в общем ответе.
-Начальные условия накладываем на полное решение, не только на $y_h$.
+\st{Шаг 5. Интегрировать.} Находим функции
+$$C_1(x)=-\int{y_2f\over W}\,dx,\qquad
+C_2(x)=\int{y_1f\over W}\,dx.$$
+Для одного частного решения постоянные интегрирования берём нулевыми:
+иначе они лишь повторяют $y_h$.
 
-\st{Алгоритм.} Нормировать уравнение; найти или взять из условия $y_1,y_2$;
-проверить $W\ne0$; записать два уравнения на $C_1',C_2'$; решить их;
-интегрировать; собрать $y_p$, затем $y_h+y_p$; указать интервал и проверить
-подстановкой. Формулы выше -- итог вывода, а не подстановка без объяснения.
+\st{Шаг 6. Собрать и проверить ответ.}
+$$y=y_h+y_p=A_1y_1+A_2y_2+C_1(x)y_1+C_2(x)y_2.$$
+При задаче Коши начальные условия подставляем в полное решение.
+
+{\eightit Ограничения метода. Алгоритм применим к \it линейному\eightit\ уравнению
+на интервале, где $a(x)\ne0$, коэффициенты и правая часть непрерывны и для
+выбранной пары $W(x)\ne0$. Если в шаге 5 интегралы не выражаются через
+элементарные функции, это не ошибка: ответ можно оставить в интегральной
+форме.}\par
 
 \vfil\eject
-\centerline{\bf Классная работа: условия и подробные решения}
+\centerline{\bf Классная работа: решения по алгоритму}
 \bigskip
 \abovedisplayskip=7pt plus 2pt minus 2pt
 \belowdisplayskip=7pt plus 2pt minus 2pt
 
-\problem{1}{$y''+y=1/\cos x,\qquad |x|<\pi/2$}
-\st{Шаг 1.} Уравнение уже нормировано: коэффициент при $y''$ равен 1.
-Решаем однородное уравнение:
-$$y''+y=0,\qquad\lambda^2+1=0\quad\Rightarrow\quad\lambda=\pm i.$$
-$$y_1=\cos x,\quad y_2=\sin x,\qquad y_h=C_1\cos x+C_2\sin x.$$
-Находим производные и вронскиан:
-$$y_1'=-\sin x,\quad y_2'=\cos x,\qquad
-W=\cos x\cdot\cos x-\sin x\cdot(-\sin x)=1\ne0.$$
-\st{Шаг 2.} Заменяем постоянные функциями:
-$$y_p=C_1(x)\cos x+C_2(x)\sin x.$$
-По правилу произведения
-$$y_p'=C_1'\cos x+C_2'\sin x-C_1\sin x+C_2\cos x.$$
-Накладываем условие $C_1'\cos x+C_2'\sin x=0$. Тогда
-$$y_p'=-C_1\sin x+C_2\cos x,$$
-$$y_p''=-C_1'\sin x+C_2'\cos x-C_1\cos x-C_2\sin x.$$
-При сложении с $y_p$ последние два слагаемых сокращаются:
-$$y_p''+y_p=-C_1'\sin x+C_2'\cos x={1\over\cos x}.$$
-\st{Шаг 3.} Получили систему на производные неизвестных функций:
+\problem{1}{$y''+y=1/\cos x,\quad |x|<\pi/2$}
+\st{Шаг 0.} Уравнение уже нормировано: $f=1/\cos x$.
+\st{Шаг 1.} $y''+y=0$, поэтому
+$$y_1=\cos x,\quad y_2=\sin x,\quad y_h=A_1\cos x+A_2\sin x.$$
+\st{Шаг 2.} $W=\cos^2x+\sin^2x=1\ne0$.
+\st{Шаг 3.}
 $$\cases{C_1'\cos x+C_2'\sin x=0,\cr
           -C_1'\sin x+C_2'\cos x=1/\cos x.\cr}$$
-Первое уравнение умножаем на $\cos x$, второе на $-\sin x$ и складываем:
-$$C_1'(\cos^2x+\sin^2x)=-{\sin x\over\cos x}
-\quad\Rightarrow\quad C_1'=-\tan x.$$
-Теперь первое умножаем на $\sin x$, второе на $\cos x$ и складываем:
-$$C_2'(\sin^2x+\cos^2x)=1\quad\Rightarrow\quad C_2'=1.$$
-\vfil\eject
-\line{\boxnum{1}\quad Продолжение решения\hfil}
-\smallskip
-\st{Шаг 4.} Интегрируем; для частного решения постоянные берём нулевыми.
-При $|x|<\pi/2$ имеем $\cos x>0$, поэтому
-$$C_1(x)=-\int{\sin x\over\cos x}\,dx
-=\int{d(\cos x)\over\cos x}=\ln\cos x,\qquad C_2(x)=\int dx=x.$$
-\st{Шаг 5.} Подставляем функции на место множителей:
-$$y_p=(\ln\cos x)\cos x+x\sin x,\qquad y=y_h+y_p.$$
-\st{Проверка.} Дифференцируем найденное частное решение:
-$$y_p'=-\sin x\ln\cos x-\sin x+\sin x+x\cos x
-=-\sin x\ln\cos x+x\cos x,$$
-$$y_p''=-\cos x\ln\cos x+\sin x\tan x+\cos x-x\sin x.$$
-Складываем с $y_p$ и сокращаем логарифмические слагаемые и $x\sin x$:
-$$y_p''+y_p={\sin^2x\over\cos x}+\cos x
-={\sin^2x+\cos^2x\over\cos x}={1\over\cos x}.$$
-\ans{y=C_1\cos x+C_2\sin x+\cos x\ln\cos x+x\sin x}
+\st{Шаг 4.} $C_1'=-\tan x$, $C_2'=1$.
+\st{Шаг 5.} При $|x|<\pi/2$ имеем $\cos x>0$:
+$$C_1=\ln\cos x,\qquad C_2=x.$$
+\st{Шаг 6.}
+$$y_p=\cos x\ln\cos x+x\sin x,$$
+\ans{y=A_1\cos x+A_2\sin x+\cos x\ln\cos x+x\sin x}
+\st{Проверка.}
+$$y_p'=-\sin x\ln\cos x+x\cos x,$$
+$$y_p''+y_p={\sin^2x\over\cos x}+\cos x={1\over\cos x}.$$
 
 \vfil\eject
-\problem{2}{$y''+y=\tan x,\qquad |x|<\pi/2$}
-\st{Шаг 1.} Решаем однородное уравнение:
-$$\lambda^2+1=0\quad\Rightarrow\quad\lambda=\pm i,\qquad
-y_h=C_1\cos x+C_2\sin x.$$
-Берём $y_1=\cos x$, $y_2=\sin x$; тогда
-$$W=\cos x\cdot\cos x-\sin x\cdot(-\sin x)=1.$$
-\st{Шаг 2.} Ищем $y_p=C_1(x)\cos x+C_2(x)\sin x$ и накладываем
-условие $C_1'\cos x+C_2'\sin x=0$. При этом
-$$y_p'=-C_1\sin x+C_2\cos x,$$
-$$y_p''=-C_1'\sin x+C_2'\cos x-C_1\cos x-C_2\sin x.$$
-Подставляем в $y_p''+y_p=\tan x$: слагаемые с $C_1,C_2$ сокращаются.
-Остаётся система
+\problem{2}{$y''+y=\tan x,\quad |x|<\pi/2$}
+\st{Шаг 0.} Уравнение нормировано: $f=\tan x$.
+\st{Шаг 1.} $y_1=\cos x$, $y_2=\sin x$,
+$$y_h=A_1\cos x+A_2\sin x.$$
+\st{Шаг 2.} $W=1\ne0$.
+\st{Шаг 3.}
 $$\cases{C_1'\cos x+C_2'\sin x=0,\cr
           -C_1'\sin x+C_2'\cos x=\tan x.\cr}$$
-\st{Шаг 3.} Для исключения $C_2'$ складываем первое уравнение,
-умноженное на $\cos x$, и второе, умноженное на $-\sin x$:
-$$C_1'=-\sin x\tan x=-{\sin^2x\over\cos x}
-=-{1-\cos^2x\over\cos x}=\cos x-{1\over\cos x}.$$
-Для исключения $C_1'$ складываем первое, умноженное на $\sin x$,
-и второе, умноженное на $\cos x$:
-$$C_2'=\cos x\tan x=\sin x.$$
-\vfil\eject
-\line{\boxnum{2}\quad Продолжение решения\hfil}
-\smallskip
-\st{Шаг 4.} Разбираем нетабличный на первый взгляд интеграл.
-Умножаем числитель и знаменатель на $\cos x$ и делаем замену $t=\sin x$:
-$$\int{dx\over\cos x}=\int{\cos x\,dx\over1-\sin^2x}
-=\int{dt\over1-t^2}.$$
-Разложение на простые дроби даёт
-$$\int{dt\over1-t^2}={1\over2}\int\left({1\over1+t}+{1\over1-t}\right)dt
-={1\over2}\ln{1+t\over1-t}.$$
-На выбранном интервале $-1<\sin x<1$, $\cos x>0$. Поэтому
-$$H(x):={1\over2}\ln{1+\sin x\over1-\sin x}
-=\ln{1+\sin x\over\cos x}=\ln(\sec x+\tan x),$$
-где $\sec x=1/\cos x$. Итак, $H'=1/\cos x$ и
-$$C_1(x)=\int\cos x\,dx-\int{dx\over\cos x}=\sin x-H(x),$$
-$$C_2(x)=\int\sin x\,dx=-\cos x.$$
-\st{Шаг 5.} Собираем частное решение, явно сокращая слагаемые:
-$$y_p=(\sin x-H)\cos x+(-\cos x)\sin x=-H\cos x.$$
-Полное решение $y=y_h+y_p$.
-\st{Проверка.} Используем $H'=1/\cos x$:
-$$y_p'=\sin x\,H-\cos x\,{1\over\cos x}=\sin x\,H-1,$$
-$$y_p''=\cos x\,H+{\sin x\over\cos x},\qquad
-y_p''+y_p=\cos x\,H+\tan x-\cos x\,H=\tan x.$$
-\ans{y=C_1\cos x+C_2\sin x-\cos x\ln(\sec x+\tan x)}
+\st{Шаг 4.}
+$$C_1'=-\sin x\tan x=\cos x-{1\over\cos x},\qquad C_2'=\sin x.$$
+\st{Шаг 5.} Обозначим
+$$H(x)=\int{dx\over\cos x}=\ln(\sec x+\tan x).$$
+Тогда $C_1=\sin x-H$, $C_2=-\cos x$.
+\st{Шаг 6.}
+$$y_p=(\sin x-H)\cos x-\cos x\sin x=-H\cos x,$$
+\ans{y=A_1\cos x+A_2\sin x-\cos x\ln(\sec x+\tan x)}
+\st{Проверка.} Так как $H'=1/\cos x$,
+$$y_p'=\sin x\,H-1,\qquad y_p''+y_p=\tan x.$$
 
 \vfil\eject
-\problem{3}{$y''=1/(1+x^2),\qquad x\in\mathop{\rm R}$}
-\st{Шаг 1.} Однородное уравнение $y''=0$ даёт
-$$\lambda^2=0,\qquad\lambda_1=\lambda_2=0,\qquad
-y_h=(C_1+C_2x)e^{0x}=C_1+C_2x.$$
-Выбираем $y_1=1$, $y_2=x$. Проверяем независимость:
-$$y_1'=0,\quad y_2'=1,\qquad W=1\cdot1-x\cdot0=1.$$
-Здесь можно дважды интегрировать исходное уравнение; решим его вариацией
-постоянных, чтобы сопоставить методы.
-\st{Шаг 2.} Заменяем постоянные функциями:
-$$y_p=C_1(x)+xC_2(x),\qquad y_p'=C_1'+xC_2'+C_2.$$
-Накладываем условие $C_1'+xC_2'=0$. Тогда $y_p'=C_2$, $y_p''=C_2'$.
-Подстановка в исходное уравнение даёт систему
+\problem{3}{$y''=1/(1+x^2),\quad x\in\mathop{\rm R}$}
+\st{Шаг 0.} Нормированное уравнение имеет $f=1/(1+x^2)$.
+\st{Шаг 1.} Для $y''=0$ берём $y_1=1$, $y_2=x$,
+$$y_h=A_1+A_2x.$$
+\st{Шаг 2.} $W=1\ne0$.
+\st{Шаг 3.}
 $$\cases{C_1'+xC_2'=0,\cr C_2'=1/(1+x^2).\cr}$$
-\st{Шаг 3.} Подставляем второе уравнение в первое:
-$$C_1'+{x\over1+x^2}=0\quad\Rightarrow\quad
-C_1'=-{x\over1+x^2}.$$
-Интегрируем первое выражение заменой $z=1+x^2$, $dz=2x\,dx$:
-$$C_1(x)=-\int{x\,dx\over1+x^2}=-{1\over2}\int{dz\over z}
-=-{1\over2}\ln z=-{1\over2}\ln(1+x^2).$$
-Для второго используем табличный интеграл:
-$$C_2(x)=\int{dx\over1+x^2}=\arctan x.$$
-\st{Шаг 4.} Возвращаемся к $y_p$ и добавляем $y_h$:
-$$y_p=-{1\over2}\ln(1+x^2)+x\arctan x,\qquad y=y_h+y_p.$$
-\st{Проверка.} Дифференцируем оба слагаемых:
-$$y_p'=-{1\over2}\,{2x\over1+x^2}+\arctan x+{x\over1+x^2}
-=\arctan x,$$
-$$y_p''={1\over1+x^2},\qquad y_h''=(C_1+C_2x)''=0.$$
-Так как $1+x^2>0$ для любого действительного $x$, решение определено
-на всей действительной оси.
-\ans{y=C_1+C_2x-{1\over2}\ln(1+x^2)+x\arctan x}
+\st{Шаг 4.}
+$$C_1'=-{x\over1+x^2},\qquad C_2'={1\over1+x^2}.$$
+\st{Шаг 5.}
+$$C_1=-{1\over2}\ln(1+x^2),\qquad C_2=\arctan x.$$
+\st{Шаг 6.}
+$$y_p=-{1\over2}\ln(1+x^2)+x\arctan x,$$
+\ans{y=A_1+A_2x-{1\over2}\ln(1+x^2)+x\arctan x}
+\st{Проверка.} $y_p'=\arctan x$, поэтому $y_p''=1/(1+x^2)$.
 
 \vfil\eject
-\problem{4}{$y''-y=e^x/(1+e^x),\qquad x\in\mathop{\rm R}$}
-\st{Шаг 1.} Решаем однородное уравнение $y''-y=0$:
-$$\lambda^2-1=(\lambda-1)(\lambda+1)=0
-\quad\Rightarrow\quad\lambda_1=1,\quad\lambda_2=-1.$$
-$$y_1=e^x,\quad y_2=e^{-x},\qquad y_h=C_1e^x+C_2e^{-x}.$$
-Вычисляем вронскиан:
-$$W=e^x(-e^{-x})-e^{-x}e^x=-1-1=-2\ne0.$$
-\st{Шаг 2.} Ищем $y_p=C_1(x)e^x+C_2(x)e^{-x}$.
-Условие $C_1'e^x+C_2'e^{-x}=0$ сокращает первую производную до
-$$y_p'=C_1e^x-C_2e^{-x}.$$
-Тогда
-$$y_p''=C_1'e^x-C_2'e^{-x}+C_1e^x+C_2e^{-x},$$
-$$y_p''-y_p=C_1'e^x-C_2'e^{-x}={e^x\over1+e^x}.$$
-Получаем систему
+\problem{4}{$y''-y=e^x/(1+e^x),\quad x\in\mathop{\rm R}$}
+\st{Шаг 0.} Уравнение нормировано: $f=e^x/(1+e^x)$.
+\st{Шаг 1.} Для $y''-y=0$:
+$$y_1=e^x,\quad y_2=e^{-x},\quad y_h=A_1e^x+A_2e^{-x}.$$
+\st{Шаг 2.} $W=-2\ne0$.
+\st{Шаг 3.}
 $$\cases{C_1'e^x+C_2'e^{-x}=0,\cr
           C_1'e^x-C_2'e^{-x}=e^x/(1+e^x).\cr}$$
-\st{Шаг 3.} Складываем уравнения, а затем вычитаем второе из первого:
-$$2C_1'e^x={e^x\over1+e^x}
-\quad\Rightarrow\quad C_1'={1\over2(1+e^x)},$$
-$$2C_2'e^{-x}=-{e^x\over1+e^x}
-\quad\Rightarrow\quad C_2'=-{e^{2x}\over2(1+e^x)}.$$
-\vfil\eject
-\line{\boxnum{4}\quad Продолжение решения\hfil}
-\smallskip
-\st{Шаг 4.} Для первого интеграла выделяем производную логарифма:
-$$C_1(x)={1\over2}\int{dx\over1+e^x}
-={1\over2}\int\left(1-{e^x\over1+e^x}\right)dx$$
-$$={1\over2}\left(x-\int{d(1+e^x)\over1+e^x}\right)
-={x-\ln(1+e^x)\over2}.$$
-Во втором интеграле делаем замену $z=e^x$, $dz=e^x dx$, $dx=dz/z$:
-$$C_2(x)=-{1\over2}\int{e^{2x}\over1+e^x}\,dx
-=-{1\over2}\int{z^2\over1+z}\,{dz\over z}.$$
-Делим $z$ на $1+z$: ${z\over1+z}=1-{1\over1+z}$. Поэтому
-$$C_2(x)=-{1\over2}\int{z\over1+z}\,dz
- =-{1\over2}\bigl[z-\ln(1+z)\bigr]={-e^x+\ln(1+e^x)\over2}.$$
-\st{Шаг 5.} Для краткости обозначим $H=\ln(1+e^x)$. Подставляем:
-$$y_p={x-H\over2}\,e^x+{-e^x+H\over2}\,e^{-x}
-={e^x(x-H)-1+e^{-x}H\over2}.$$
-Добавляем $y_h$. Здесь $1+e^x>0$ при всех $x$, ограничений нет.
-\st{Проверка.} Сначала проверяем производные найденных функций:
-$$C_1'={1\over2}\left(1-{e^x\over1+e^x}\right)
-={1\over2(1+e^x)},$$
-$$C_2'={1\over2}\left(-e^x+{e^x\over1+e^x}\right)
-=-{e^{2x}\over2(1+e^x)}.$$
-Их подстановка в дополнительное условие даёт
-$$C_1'e^x+C_2'e^{-x}={e^x\over2(1+e^x)}-{e^x\over2(1+e^x)}=0.$$
-Следовательно, формулы производных из шага 2 применимы, и
-$$y_p''-y_p=C_1'e^x-C_2'e^{-x}
-={e^x\over2(1+e^x)}+{e^x\over2(1+e^x)}={e^x\over1+e^x}.$$
-\ans{y=C_1e^x+C_2e^{-x}+{e^x(x-H)+e^{-x}H-1\over2}}
+\st{Шаг 4.}
+$$C_1'={1\over2(1+e^x)},\qquad C_2'=-{e^{2x}\over2(1+e^x)}.$$
+\st{Шаг 5.} При $H=\ln(1+e^x)$:
+$$C_1={x-H\over2},\qquad C_2={-e^x+H\over2}.$$
+\st{Шаг 6.}
+$$y_p={e^x(x-H)-1+e^{-x}H\over2},$$
+\ans{y=A_1e^x+A_2e^{-x}+{e^x(x-H)-1+e^{-x}H\over2},\quad H=\ln(1+e^x)}
+\st{Проверка.} Из шага 3:
+$$y_p''-y_p=C_1'e^x-C_2'e^{-x}={e^x\over1+e^x}.$$
 
 \vfil\eject
-\problem{5}{$x^2y''-2xy'+2y=x^2,\qquad x>0$}
-\st{Шаг 1.} Делим всё уравнение на $x^2\ne0$:
-$$y''-{2\over x}y'+{2\over x^2}y=1.$$
-Теперь $p(x)=-2/x$, $q(x)=2/x^2$, $f(x)=1$.
-В системе вариации постоянных справа будет $1$, а не $x^2$.
-\st{Шаг 2.} Для однородной части даны $y_1=x$, $y_2=x^2$.
-Проверяем их в исходном однородном уравнении:
-$$y_1'=1,\quad y_1''=0,\qquad x^2\cdot0-2x\cdot1+2x=0,$$
-$$y_2'=2x,\quad y_2''=2,\qquad x^2\cdot2-2x\cdot2x+2x^2=0.$$
-Вронскиан $W=x\cdot2x-x^2\cdot1=x^2\ne0$ при $x>0$.
-Поэтому $y_h=C_1x+C_2x^2$.
-\st{Шаг 3.} Ищем $y_p=xC_1(x)+x^2C_2(x)$. Тогда
-$$y_p'=xC_1'+x^2C_2'+C_1+2xC_2.$$
-Выбираем $xC_1'+x^2C_2'=0$, после чего
-$$y_p'=C_1+2xC_2,\qquad y_p''=C_1'+2xC_2'+2C_2.$$
-Подставляем в нормированное уравнение:
-$$C_1'+2xC_2'+2C_2-{2\over x}(C_1+2xC_2)
-+{2\over x^2}(xC_1+x^2C_2)=1,$$
-$$C_1'+2xC_2'+(2-4+2)C_2+\left(-{2\over x}+{2\over x}\right)C_1=1.$$
-Получаем систему
+\problem{5}{$x^2y''-2xy'+2y=x^2,\quad x>0$}
+\st{Шаг 0.} Делим на $x^2$:
+$$y''-{2\over x}y'+{2\over x^2}y=1,\qquad f=1.$$
+\st{Шаг 1.} Для ЛОДУ берём $y_1=x$, $y_2=x^2$,
+$$y_h=A_1x+A_2x^2.$$
+\st{Шаг 2.} $W=x^2\ne0$ при $x>0$.
+\st{Шаг 3.}
 $$\cases{xC_1'+x^2C_2'=0,\cr C_1'+2xC_2'=1.\cr}$$
-\vfil\eject
-\line{\boxnum{5}\quad Продолжение решения\hfil}
-\smallskip
-\st{Шаг 4.} Делим первое уравнение на $x>0$:
-$$C_1'+xC_2'=0.$$
-Вычитаем его из второго:
-$$xC_2'=1\quad\Rightarrow\quad C_2'={1\over x},\qquad
-C_1'=-xC_2'=-1.$$
-Интегрируем:
-$$C_1(x)=-\int dx=-x,\qquad C_2(x)=\int{dx\over x}=\ln x.$$
-\st{Шаг 5.} Подставляем в $y_p$, затем добавляем $y_h$:
-$$y_p=x(-x)+x^2\ln x=-x^2+x^2\ln x,$$
-$$y=C_1x+C_2x^2-x^2+x^2\ln x=C_1x+(C_2-1)x^2+x^2\ln x.$$
-Число $C_2-1$ произвольно; обозначаем его снова $C_2$.
-\st{Проверка.} Достаточно проверить частное слагаемое $v=x^2\ln x$:
-$$v'=2x\ln x+x,\qquad v''=2\ln x+2+1=2\ln x+3.$$
-В исходном, а не нормированном уравнении получаем
-$$x^2v''-2xv'+2v=x^2(2\ln x+3)-2x(2x\ln x+x)+2x^2\ln x$$
-$$=(2-4+2)x^2\ln x+(3-2)x^2=x^2.$$
-\ans{y=C_1x+C_2x^2+x^2\ln x,\quad x>0}
+\st{Шаг 4.}
+$$C_1'=-1,\qquad C_2'={1\over x}.$$
+\st{Шаг 5.} $C_1=-x$, $C_2=\ln x$.
+\st{Шаг 6.}
+$$y_p=-x^2+x^2\ln x.$$
+Слагаемое $-x^2$ входит в $y_h$, поэтому
+\ans{y=A_1x+A_2x^2+x^2\ln x,\quad x>0}
+\st{Проверка.} Для $v=x^2\ln x$:
+$$v'=2x\ln x+x,\quad v''=2\ln x+3,$$
+$$x^2v''-2xv'+2v=x^2.$$
 
 \vfil\eject
 \problem{6}{$y''+y=1/\cos x,\quad y(0)=0,\ y'(0)=0$}
-\st{Шаг 1.} Для однородного уравнения
-$$\lambda^2+1=0\quad\Rightarrow\quad\lambda=\pm i,\qquad
-y_h=C_1\cos x+C_2\sin x.$$
-Берём $y_1=\cos x$, $y_2=\sin x$, $W=\cos^2x+\sin^2x=1$.
-Выбираем интервал $|x|<\pi/2$: он содержит начальную точку $0$,
-а $\cos x$ на нём положителен.
-\st{Шаг 2.} Ищем $y_p=C_1(x)\cos x+C_2(x)\sin x$.
-С дополнительным условием первая производная имеет вид
-$$y_p'=-C_1(x)\sin x+C_2(x)\cos x.$$
-Подстановка второй производной в $y_p''+y_p=1/\cos x$ даёт
-$$\cases{C_1'\cos x+C_2'\sin x=0,\cr
-          -C_1'\sin x+C_2'\cos x=1/\cos x.\cr}$$
-Умножая уравнения соответственно на $\cos x,-\sin x$ и складывая,
-а затем на $\sin x,\cos x$ и складывая, получаем
-$$C_1'(\cos^2x+\sin^2x)=-{\sin x\over\cos x},\qquad
-C_2'(\sin^2x+\cos^2x)=1.$$
-Следовательно,
-$$C_1'=-\tan x,\quad C_2'=1,\qquad
-C_1(x)=\ln\cos x,\quad C_2(x)=x.$$
-\st{Шаг 3.} Собираем частное и полное решения:
-$$y_p=\cos x\ln\cos x+x\sin x,$$
-$$y=C_1\cos x+C_2\sin x+\cos x\ln\cos x+x\sin x.$$
-Вычисляем производную полного решения:
-$$y'=-C_1\sin x+C_2\cos x-\sin x\ln\cos x+x\cos x.$$
-Здесь слагаемые $-\sin x$ от производной $\cos x\ln\cos x$
-и $+\sin x$ от производной $x\sin x$ сократились.
-\vfil\eject
-\line{\boxnum{6}\quad Продолжение решения\hfil}
-\smallskip
-\st{Шаг 4.} Подставляем $x=0$, учитывая $\ln\cos0=\ln1=0$:
-$$y(0)=C_1\cdot1+C_2\cdot0+1\cdot0+0\cdot0=C_1=0,$$
-$$y'(0)=-C_1\cdot0+C_2\cdot1-0\cdot0+0\cdot1=C_2=0.$$
-Обе произвольные постоянные равны нулю: $y=y_p$.
-\st{Проверка.} Для найденной функции
-$$y'=-\sin x\ln\cos x+x\cos x,$$
-$$y''=-\cos x\ln\cos x+{\sin^2x\over\cos x}+\cos x-x\sin x,$$
-$$y''+y={\sin^2x+\cos^2x\over\cos x}={1\over\cos x},$$
-$$y(0)=1\cdot\ln1+0=0,\qquad y'(0)=-0\cdot\ln1+0=0.$$
-Через $x=\pm\pi/2$ решение задачи продолжить нельзя:
-правая часть исходного уравнения там не определена.
+\st{Шаги 0--5.} Они совпадают с задачей 1:
+$$y_h=A_1\cos x+A_2\sin x,\qquad
+y_p=\cos x\ln\cos x+x\sin x.$$
+\st{Шаг 6.} Полное решение:
+$$y=A_1\cos x+A_2\sin x+\cos x\ln\cos x+x\sin x.$$
+Из $y(0)=0$ получаем $A_1=0$. Так как
+$$y'= -A_1\sin x+A_2\cos x-\sin x\ln\cos x+x\cos x,$$
+из $y'(0)=0$ получаем $A_2=0$.
 \ans{y=\cos x\ln\cos x+x\sin x,\quad |x|<\pi/2}
+\st{Проверка.} Она уже выполнена в задаче 1; начальные условия очевидны при $x=0$.
 
 \vfil\eject
 \centerline{\bf Самостоятельная работа}
 \bigskip
-Примените вариацию постоянных, выпишите систему на $C_1'(x),C_2'(x)$.
-В последней задаче однородная часть дана; предварительно нормируйте
-уравнение. Проверьте решение на указанном интервале.
+Для каждой задачи примените шаги 0--6 алгоритма: нормируйте уравнение,
+найдите $y_1,y_2$ и $W$, запишите систему, используйте формулы шага 4,
+интегрируйте и проверьте ответ.
 \problem{1}{$y''+y=2/\cos x,\quad |x|<\pi/2$}
 \problem{2}{$y''+y=1/\sin x,\quad 0<x<\pi$}
 \problem{3}{$y''=1/x,\quad x>0$}
 \problem{4}{$y''=\ln x,\quad x>0$}
 \problem{5}{$y''+y=\tan x,\quad y(0)=1,\ y'(0)=0,\quad |x|<\pi/2$}
 \problem{6}{$x^2y''-2xy'+2y=x^3,\quad x>0$}
-Для задачи 6: $y_h=C_1x+C_2x^2$.
-\bye
+Для задачи 6: $y_h=A_1x+A_2x^2$.
+\end{document}
